@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="ko-KR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>공지사항 등록</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/center.css">
+</head>
+
+<body>
+	<!-- wrapper -->
+	<div class="wrapper">
+		<!-- header -->
+		<div class="header">
+			<div class="inner">
+				<h1>GoToTheHells</h1>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- container -->
+		<div class="container page_qna">
+			<div class="inner">
+				<ul class="tab_menu_category cf">
+					<li class="active"><a href="javascript:;">공지사항</a></li>
+					<li><a href="javascript:;">자유게시판</a></li>
+					<li><a href="javascript:;">갤러리</a></li>
+					<li><a href="javascript:;">질문과 답변</a></li>
+				</ul>
+				<br>
+				<br>
+				<div class="box_notice">
+					<div class="inner">파일 첨부를 제외한 모든 내역은 필수입니다.</div>
+				</div>
+				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>제목 <span>*</span></th>
+						<td><input type="text" placeholder="제목을 입력하세요."></td>
+					</tr>
+					<tr>
+					</tr>
+					<tr>
+						<th>파일 첨부</th>
+						<td>
+							<div class="cf">
+								<input type="text" readonly="readonly" title="File Route" id="fileLoute" placeholder="파일을 첨부하세요.">
+								<label for="file_qna" onchange="javascript:document.getElementById('fileLoute').value=this.value">파일선택<input type="file" id="file_qna"></label>
+								<a href="javascript:;">+</a>
+								<a href="javascript:;">-</a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>내용 <span>*</span></th>
+						<td><textarea name="" id="" cols="30" rows="10" style="resize: none; overflow-y: auto;"></textarea></td>
+					</tr>
+				</table>
+				<div class="box_buttons cf">
+					<a href="javascript:;" class="btn_left">등록하기</a>
+					<a href="javascript:;" class="btn_right">취소하기</a>
+				</div>
+			</div>
+		</div>
+		<!-- //container -->
+
+		<!-- footer -->
+		<div class="footer">
+			<div class="inner">
+			</div>
+		</div>
+		<!-- //footer -->
+	</div>
+	<!-- //wrapper -->
+</body>
+
+</html>
