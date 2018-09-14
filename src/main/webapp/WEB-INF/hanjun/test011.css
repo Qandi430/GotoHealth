@@ -1,0 +1,34 @@
+
+
+body {
+  font: 14px/1 'Open Sans', sans-serif;
+  color: #555;
+  background: #e5e5e5;
+}
+
+.gallery {
+  
+  float : left;
+}
+
+.gallery > div {
+  /* position: relative; */
+  /* float: left; */
+  /* padding: 5px; */
+}
+
+.gallery > div > img {
+  display: block;
+  /* width: 200px; */
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.gallery > div:hover {
+  /* z-index: 1; */
+}
+
+.gallery > div:hover > img {
+  transform: scale(1.7,1.7);
+  transition: .3s transform;
+}
