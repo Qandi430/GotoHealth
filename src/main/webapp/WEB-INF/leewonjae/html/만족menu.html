@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" />
+ 
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway:900);
+html {
+  background: url(https://i.imgur.com/kyIYGDZ.png);
+  font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+  /* position and height for footer */
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-width: 322px;
+  margin: 0 0 75px;
+  /* bottom matches footer height */
+}
+
+a {
+  text-decoration: none;
+}
+
+/*------------------------------
+masthead styles
+-------------------------------*/
+.masthead {
+  box-shadow: 2px 2px 3px  black;
+  background: #ffffff;
+  /*position and z-index set for box-shadow to appear over statusBar*/
+  position: center;
+  z-index: 10;
+}
+
+.masthead-hd-logo {
+  padding: 0 15px 30px 30px;
+  font: 35px Raleway;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.masthead-hd-logo-link {
+  text-decoration: none;
+  color: #000000;
+}
+
+.masthead-hd {
+  display: inline-block;
+}
+
+.masthead-bd {
+  display: inline-block;
+}
+
+.masthead-hd-logo-link-icon {
+  display: inline-block;
+  height: 32px;
+  width: 30px;
+  background: url(https://i.imgur.com/YQddQYV.png) no-repeat -30px 0;
+}
+
+.masthead-hd-logo-link-icon_hand:hover {
+  background-position: -150px 0;
+}
+
+/* displays hand icon hover state when hovering on branding */
+.masthead:hover .masthead-hd-logo-link-icon_hand {
+  background-position: -150px 0;
+}
+
+/*------------------------------
+icon styles
+-------------------------------*/
+.icon {
+  display: inline-block;
+  height: 32px;
+  width: 30px;
+  background: url(https://i.imgur.com/YQddQYV.png) no-repeat;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.icon_search {
+  background-position: -60px 0;
+}
+
+.icon_smile {
+  background-position: -90px 0;
+}
+
+.icon_wrench {
+  width: 29px;
+  background-position: 0 0;
+}
+
+.icon_search:hover {
+  background-position: -180px 0;
+}
+
+.icon_smile:hover {
+  background-position: -210px 0;
+}
+
+.icon_wrench:hover {
+  background-position: -120px 0;
+}
+
+/*------------------------------
+hList styles
+--------------------------------*/
+.hList > * {
+  display: inline-block;
+}
+
+.hList > * + * {
+  margin-left: 20px;
+}
+
+.hList-item-link {
+  text-decoration: none;
+}
+
+/*------------------------------
+split styles
+-------------------------------*/
+.split {
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+.split > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.split-right {
+  text-align: right;
+}
+
+/*------------------------------
+statusBar styles
+-------------------------------*/
+.statusBar {
+  padding: 3px 10px;
+  background:  black;
+  color: #ffffff;
+  box-shadow: 0 0 3px #808080;
+  /*position and z-index for box-shadow*/
+  position: relative;
+  z-index: 2;
+}
+
+/*------------------------------
+subNav styles
+-------------------------------*/
+.subNav {
+  padding: 20px 10px;
+  background: #ffffff;
+}
+
+.subNav-list {
+  text-align: center;
+}
+
+.subNav-list-item-link {
+  color: #808080;
+  font-weight: bold;
+}
+
+.subNav-list > * {
+  display: inline-block;
+}
+
+.subNav-list > * + * {
+  margin-left: 10px;
+}
+
+.subNav-list-item-link:hover {
+  color: black
+}
+
+.subNav-list-item-link:focus {
+  color: black
+}
+
+.subNav-list-item-link:active {
+  color: black
+}
+
+.subNav-list-item-link_active {
+  color: black
+}
+
+.subNav-list-item-link_active:hover {
+  color: black
+}
+
+/*------------------------------
+box styles as a container item
+-------------------------------*/
+.box {
+  padding: 10px;
+  border: 2px solid #d9d9d9;
+  margin: 20px 10px;
+  background: #ffffff;
+  /* position for box-shadow */
+  position: relative;
+}
+
+.box_bowShadow:before,
+.box_bowShadow:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 12px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #808080;
+  box-shadow: 0 15px 5px #808080;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.box_bowShadow:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+/*------------------------------
+ totem styles
+-------------------------------*/
+.totem {
+  padding: 0 5px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.totem > * {
+  margin-bottom: 10px;
+}
+
+.totem-hd {
+  color: black;
+  font-weight: bold;
+}
+
+.totem-bd {
+  color: #000000;
+  font-weight: bold;
+}
+
+.totem-ft {
+  color: black;
+}
+
+/*------------------------------
+footer styles
+--------------------------------*/
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 75px;
+  /* matches body margin */
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+/*------------------------------
+ media query for larger screens
+--------------------------------*/
+@media screen and (min-width: 600px) {
+  .block {
+    width: calc(50% - 5px);
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 850px) {
+  .block {
+    width: calc(33% - 5px);
+    display: inline-block;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Inspired by the Target cartwheel app
+     https://i.imgur.com/TRogm38.png-->
+
+<div class="masthead">
+        <div class="masthead-superHd">
+          <div class="split">
+            <div class="split-right">
+              <!-- <i class="icon icon_wrench"></i> -->
+            </div>
+          </div>
+        </div>
+        <div class="masthead-hd">
+          <h1 class="masthead-hd-logo">
+            <a class="masthead-hd-logo-link" href="">
+              <!-- <i class="masthead-hd-logo-link-icon masthead-hd-logo-link-icon_hand"></i> -->
+              tab올 화면
+            </a>
+          </h1>
+        </div>
+        <div class="masthead-bd">
+          <div class="split">
+            <div class="split-left">
+              <ul class="hList">
+                <!-- <li><i class="icon icon_search"></i></li> -->
+              </ul>  
+            </div>
+          </div>
+        </div>
+      </div><!-- end masthead -->
+      
+      <div class="statusBar">
+        <div class="split">
+          <div class="split-left">
+            <!-- <p><span class="txt_bold">282</span> offers </p> -->
+          </div>
+          <div class="split-right">
+            <!-- <p><span class="txt_bold">8/10</span> added</p> -->
+          </div>
+        </div>
+      </div><!-- end statusBar -->
+      
+      <div class="subNav">
+        <ul class="subNav-list">
+          <li class="subNav-list-item"><a class="subNav-list-item-link" href="#">인기도순</a></li>
+          <li class="subNav-list-item"><a class="subNav-list-item-link" href="#">누적 판매순</a></li>
+          <li class="subNav-list-item"><a class="subNav-list-item-link subNav-list-item-link_active" href="#">최신 등록순</a></li>
+          <li class="subNav-list-item"><a class="subNav-list-item-link" href="#">만족도순</a></li>
+        </ul>
+      </div><!-- end subNav -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">1위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족1위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">2위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족2위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">3위상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족3위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">4위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족4위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">5위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족5위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">6위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족6위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">7위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족7위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">8위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족8위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">9위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족9위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+
+      <div class="block">
+        <a href="#">
+          <div class="box box_bowShadow">
+            <div class="split">
+              <div class="split-left">
+                <div class="totem">
+                  <p class="totem-hd">10위 상품</p>
+                  <p class="totem-bd">Lovely Product for all to enjoy</p>
+                  <p class="totem-ft">all varieties</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <img src="\image\만족10위.jpg" alt="" />
+              </div>
+            </div>
+          </div><!-- end box -->
+        </a>
+      </div><!-- end block -->
+      
+      <!-- <div class="footer">
+        <div class="split">
+          <div class="split-left">
+            <small>&#169; 2014 front-end recreations</small>
+          </div>
+          <div class="split-right">
+            <a href="//www.twitter.com/frogmcw">
+              <i class="icon icon_smile"></i>
+            </a>
+          </div>
+        </div>
+      </div> -->
+</body>
+</html>
