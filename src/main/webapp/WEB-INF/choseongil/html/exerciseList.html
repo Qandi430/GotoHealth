@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>운동방법</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
 	<link rel="stylesheet" href="../css/common.css">
 	<link rel="stylesheet" href="../css/center.css">
 </head>
@@ -25,7 +24,7 @@
 		<div class="container page_faq">
 			<div class="inner">
 				<ul class="tab_menu_category cf">
-					<li class="way">운동방법</li>
+					<li class="way active"><a>운동방법</a></li>
 				</ul>
 				<div class="box_sort cf">
 					<ul class="list_sort cf">
@@ -35,14 +34,11 @@
 						<li><a href="javascript:;">다리</a></li>
 						<li><a href="javascript:;">어깨</a></li>
 						<li><a href="javascript:;">팔</a></li>
+						<li><a href="javascript:;">복근</a></li>
 						<li><a href="javascript:;">유산소</a></li>
 					</ul>
 				</div>
 				<div class="cf">
-					<!-- <ul class="list_align fr">
-						<li class="active">최신순 <img src="../images/arrow_bottom_select_on.png" alt=""></li>
-						<li>조회수 <img src="../images/arrow_bottom_select_off.png" alt=""></li>
-					</ul> -->
 				</div>
 				<select name="arrays" style="float: right; width: 65px; font-size: 15px; height: 30px; margin: 10px 0;">
 					<option value="new">최신순</option>
@@ -68,10 +64,28 @@
 						<td>5</td>
 						<td>6</td>
 					</tr>
+					<tr class="title">
+						<td>14</td>
+						<td>가슴</td>
+						<td><a href="./exerciseDetail.html" style="color: black; text-decoration: none;">벤치프레스 운동법입니다.</a></td>
+						<td>헬스파워남</td>
+						<td>2018.09.10</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
+					<tr class="title">
+						<td>14</td>
+						<td>가슴</td>
+						<td><a href="./exerciseDetail.html" style="color: black; text-decoration: none;">벤치프레스 운동법입니다.</a></td>
+						<td>헬스파워남</td>
+						<td>2018.09.10</td>
+						<td>5</td>
+						<td>6</td>
+					</tr>
 				</table>
 				<div class="write">
 					<form action="">
-						<button type="button" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="./exerciseWriteForm.html">글쓰기</a></button>
+						<a id="write" type="button" class="btn btn-default" style="margin: 15px 1011px" href="./exerciseWriteForm.html">글쓰기</a>
 					</form>	
 				</div>	
 				<ul class="paging cf">
@@ -100,6 +114,18 @@
 		<!-- //footer -->
 	</div>
 	<!-- //wrapper -->
+
+	<script
+	src="https://code.jquery.com/jquery-1.12.4.js"
+	integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+	crossorigin="anonymous"></script>
+	<script>
+		// 탭 클릭시 active 변경
+		$('.list_sort li').click(function(){
+			$('.list_sort li a').removeClass('active');
+			$(this).find('a').addClass('active');
+		});
+	</script>
 </body>
 
 </html>

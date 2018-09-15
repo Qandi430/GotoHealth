@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>QnA 조회</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
 	<link rel="stylesheet" href="../css/common.css">
 	<link rel="stylesheet" href="../css/center.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -26,10 +25,10 @@
 		<div class="container page_qna">
 			<div class="inner">
 				<ul class="tab_menu_category cf">
-					<li><a href="javascript:;">공지사항</a></li>
-					<li><a href="javascript:;">자유게시판</a></li>
-					<li><a href="javascript:;">갤러리</a></li>
-					<li class="active"><a href="javascript:;">질문과 답변</a></li>
+					<li><a href="./noticeList.html">공지사항</a></li>
+					<li><a href="./freeBoardList.html">자유게시판</a></li>
+					<li><a href="./galleryList.html">갤러리</a></li>
+					<li class="active"><a href="./qnaList.html">질문과 답변</a></li>
 				</ul>
 				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
@@ -47,21 +46,21 @@
 					</tr>	
 				</table>
 				<div class="rn">
-				<!-- <div class="box_buttons cf">
-					<a href="javascript:;" class="btn_right list" style="width: 150px; margin : 0 0">목록</a>
-				</div>	 -->
+				</div>
 				<div class="update-deletebutton">
-					<button type="button" class="btn btn-default btn-lg">수정</button>
-					<button type="button" class="btn btn-default btn-lg">삭제</button>
-					<button type="button" class="btn btn-default btn-lg">목록</button>
+					<a href="./qnaUpdateForm.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">수정</a>
+					<a href="./qnaDetail.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">삭제</a>
+					<a href="./qnaList.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 				</div>	
 				<div class="rn">
-
 				</div>
 				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
+						<td style="border-bottom: none; padding-bottom: 0" ><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
 					</tr>
+					<tr>
+						<td><a id="comment" href="./qnaDetail.html" type="button" class="btn btn-default comment" style="float: right">등록</a></td>
+					</tr>		
 				</table>
 				<table class="table_qna comment" width="100%" cellpadding="0" cellspacing="0">
 					<tr style="border-top: 1px solid #6d686b">
@@ -74,8 +73,8 @@
 					<tr>
 						<td colspan="2">
 							<span class="update-button">
-								<button type="button" class="btn btn-default">수정</button>
-								<button type="button" class="btn btn-default">삭제</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./qnaDetail.html'">수정</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./qnaDetail.html'">삭제</button>
 							</span>
 						</td>
 					</tr>
@@ -92,8 +91,8 @@
 					<tr>
 						<td colspan="2">
 							<span class="update-button">
-								<button type="button" class="btn btn-default">수정</button>
-								<button type="button" class="btn btn-default">삭제</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./qnaDetail.html'">수정</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./qnaDetail.html'">삭제</button>
 							</span>
 						</td>
 					</tr>

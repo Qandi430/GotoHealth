@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>갤러리 조회</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
 	<link rel="stylesheet" href="../css/common.css">
 	<link rel="stylesheet" href="../css/center.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -26,10 +25,10 @@
 		<div class="container page_qna">
 			<div class="inner">
 				<ul class="tab_menu_category cf">
-					<li><a href="javascript:;">공지사항</a></li>
-					<li><a href="javascript:;">자유게시판</a></li>
-					<li class="active"><a href="javascript:;">갤러리</a></li>
-					<li><a href="javascript:;">질문과 답변</a></li>
+					<li><a href="./noticeList.html">공지사항</a></li>
+					<li><a href="./freeBoardList.html">자유게시판</a></li>
+					<li class="active"><a href="./galleryList.html">갤러리</a></li>
+					<li><a href="./qnaList.html">질문과 답변</a></li>
 				</ul>
 				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
@@ -48,28 +47,28 @@
 
 					</tr>
 					<tr>
-						<td colspan="8">가나다라마바사아가나다sadasdsasaaㅇㄴㄹㅇ너래얀러우우아ㅜㄴㅇ마ㅣㅜㅇㄹ니뤼ㅏㅁㄴ우라ㅣㅁㄴ우ㅏㅣㄻㄴ우ㅏㅣ루ㅏㅁㄴ이룬아ㅣ루ㅏㅁㄴ아ㅣㅜㄹㅇㄴ라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아</td>
+						<td colspan="8"><img src="../images/ex.jpg" alt=""></td>
 					</tr>	
 				</table>
 				<div class="rec">
 					<button type="button" class="btn btn-warning btn-lg">추천</button>
 				</div>	
 					<div class="rn">
-				<!-- <div class="box_buttons cf">
-					<a href="javascript:;" class="btn_right list" style="width: 150px; margin : 0 0">목록</a>
-				</div>	 -->
+					</div>
 				<div class="update-deletebutton">
-					<button type="button" class="btn btn-default btn-lg"><a href="./galleryUpdateForm.html" style="color: black; text-decoration: none">수정</a></button>
-					<button type="button" class="btn btn-default btn-lg"><a href="./galleryDetail.html" style="color: black; text-decoration: none">삭제</a></button>
-					<button type="button" class="btn btn-default btn-lg"><a href="./galleryList.html" style="color: black; text-decoration: none">목록</a></button>
+					<a href="./galleryUpdateForm.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">수정</a>
+					<a href="./galleryDetail.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">삭제</a>
+					<a href="./galleryList.html" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 				</div>	
 				<div class="rn">
-
 				</div>
 				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
+						<td style="border-bottom: none; padding-bottom: 0" ><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
 					</tr>
+					<tr>
+						<td><a id="comment" href="./galleryDetail.html" type="button" class="btn btn-default comment" style="float: right">등록</a></td>
+					</tr>			
 				</table>
 				<table class="table_qna comment" width="100%" cellpadding="0" cellspacing="0">
 					<tr style="border-top: 1px solid #6d686b">
@@ -82,8 +81,8 @@
 					<tr>
 						<td colspan="2">
 							<span class="update-button">
-								<button type="button" class="btn btn-default">수정</button>
-								<button type="button" class="btn btn-default">삭제</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./galleryDetail.html'">수정</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./galleryDetail.html'">삭제</button>
 							</span>
 						</td>
 					</tr>
@@ -100,8 +99,8 @@
 					<tr>
 						<td colspan="2">
 							<span class="update-button">
-								<button type="button" class="btn btn-default">수정</button>
-								<button type="button" class="btn btn-default">삭제</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./galleryDetail.html'">수정</button>
+								<button type="button" class="btn btn-default" onclick="location.href='./galleryDetail.html'">삭제</button>
 							</span>
 						</td>
 					</tr>

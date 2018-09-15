@@ -39,6 +39,12 @@ jQuery(document).ready(function() {
   	}
   	$(this).siblings('label').text(filename);
   });
+
+  // 탭 클릭시 active 변경
+  $('.list_sort li').click(function(){
+    $('.list_sort li').removeClass('active');
+    $(this).addClass('active');
+  });
 });
 
 

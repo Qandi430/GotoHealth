@@ -4,8 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<title>질문과 답변</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+	<title>QnA</title>
 	<link rel="stylesheet" href="../css/common.css">
 	<link rel="stylesheet" href="../css/center.css">
 </head>
@@ -13,27 +12,23 @@
 <body>
 	<!-- wrapper -->
 	<div class="wrapper">
-				<!-- header -->
-				<div class="header">
-					<div class="inner">
-						<h1>GoToTheHells</h1>
-					</div>
-				</div>
-				<!-- //header -->
+		<!-- header -->
+		<div class="header">
+			<div class="inner">
+				<h1>GoToTheHells</h1>
+			</div>
+		</div>
+		<!-- //header -->
+
 		<!-- container -->
+		<div class="container page_qna">
 			<div class="inner">
 				<ul class="tab_menu_category cf">
-					<li><a href="javascript:;">공지사항</a></li>
-					<li><a href="javascript:;">자유게시판</a></li>
-					<li><a href="javascript:;">갤러리</a></li>
-					<li class="active"><a href="javascript:;">질문과 답변</a></li>
+					<li><a href="./noticeList.html">공지사항</a></li>
+					<li><a href="./freeBoardList.html">자유게시판</a></li>
+					<li><a href="./galleryList.html">갤러리</a></li>
+					<li class="active"><a href="./qnaList.html">질문과 답변</a></li>
 				</ul>
-				<!-- <div class="cf">
-					<ul class="list_align fr">
-						<li class="active">최신순 <img src="../images/arrow_bottom_select_on.png" alt=""></li>
-						<li>조회수 <img src="../images/arrow_bottom_select_off.png" alt=""></li>
-					</ul>
-				</div> -->
 				<select name="arrays" style="float: right; width: 65px; font-size: 15px; height: 30px; margin: 10px 0;">
 					<option value="new">최신순</option>
 					<option value="lookup">조회순</option>
@@ -52,7 +47,7 @@
 					<tr class="title">
 						<td>10</td>
 						<td>공지</td>
-						<td><p>해피게이머 오픈 이벤트가 진행중 입니다. 어서 빨리 상품 받아가세요.</p></td>
+						<td><a href="./qnaDetail.html" style="color: black; text-decoration: none;">헬스합시다. 헬스헬스헬스!</a></td>
 						<td>헬스왕</td>
 						<td>2018.04.24</td>
 						<td>20</td>
@@ -79,6 +74,7 @@
 			</div>
 		</div>
 		<!-- //container -->
+
 		<!-- footer -->
 		<div class="footer">
 			<div class="inner">
