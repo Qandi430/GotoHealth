@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>Document</title>
-    <link rel="stylesheet" href="test01.css">
-    <link rel="stylesheet" href="test011.css">
+
+    <link rel="stylesheet" href="../css/test01.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js">
     <style>
 
@@ -29,7 +29,7 @@
             <br>
             <br>
 
-            <img src="../google/images/워드프레스-구글-지도-삽입.png" width="90%" style="margin: 0px 60px">
+            <img src="../img/워드프레스-구글-지도-삽입.png" width="90%" style="margin: 0px 60px">
         </div>
 
         <ul class="tabs">
@@ -42,9 +42,8 @@
                     <br />
 
 
-                    <a onclick="showPopup()">
-                        <img src="./images/test4.jpg" width="250" height="250" style="float: left; margin-right: 10px;" />
-
+                    <a onclick="showPopup1()">
+                        <img src="../img/test4.jpg" width="250" height="250" style="float: left; margin-right: 10px;" />
                     </a>
 
                     <p> et malesuada fames 2ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante, sed
@@ -119,7 +118,10 @@
                 <label style="left:373px" for="tabb1">One</label>
                 <div id="tab-content1" class="content1">
                     <br />
-                    <img src="./images/test4.jpge" width="250" height="210" style="float: left; margin-right: 10px;" />
+                    <a onclick="showPopup2()">
+                        <img src="./images/test4.jpge" width="250" height="250" style="float: left; margin-right: 10px;" />
+                    </a>
+                    
                     <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante,
                         sed consequat nulla ultrices sit amet. Integer ornare aliquet metus, vitae volutpat dui
                         bibendum eu. Integer eget eleifend ipsum. Aliquam tristique orci non facilisis lobortis.
@@ -209,7 +211,9 @@
                 <label for="tabc1">One</label>
                 <div id="tab-content1" class="content">
                     <br />
-                    <img src="./images/test4.jpge" width="250px" height="210px" style="float: left; margin-right: 10px;" />
+                    <a onclick="showPopup3()">
+                        <img src="./images/test4.jpge" width="250px" height="250px" style="float: left; margin-right: 10px;" />
+                    </a>
                     <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante,
                         sed consequat nulla ultrices sit amet. Integer ornare aliquet metus, vitae volutpat dui
                         bibendum eu. Integer eget eleifend ipsum. Aliquam tristique orci non facilisis lobortis.
@@ -280,7 +284,9 @@
                 <label style="left:373px" for="tabd1">One</label>
                 <div id="tab-content1" class="content1">
                     <br />
-                    <img src="./images/test4.jpge" width="250px" height="210px" style="float: left; margin-right: 10px;" />
+                    <a onclick="showPopup4()">
+                        <img src="./images/test4.jpge" width="250px" height="250px" style="float: left; margin-right: 10px;" />
+                    </a>
                     <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante,
                         sed consequat nulla ultrices sit amet. Integer ornare aliquet metus, vitae volutpat dui
                         bibendum eu. Integer eget eleifend ipsum. Aliquam tristique orci non facilisis lobortis.
@@ -373,7 +379,9 @@
                 <label for="tabf1">One</label>
                 <div id="tab-content1" class="content">
                     <br />
-                    <img src="./images/test4.jpge" width="250px" height="210px" style="float: left; margin-right: 10px;" />
+                    <a onclick="showPopup5()">
+                        <img src="./images/test4.jpge" width="250px" height="250px" style="float: left; margin-right: 10px;" />
+                    </a>
                     <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante,
                         sed consequat nulla ultrices sit amet. Integer ornare aliquet metus, vitae volutpat dui
                         bibendum eu. Integer eget eleifend ipsum. Aliquam tristique orci non facilisis lobortis.
@@ -444,7 +452,10 @@
                 <label style="left:373px" for="tabq1">One</label>
                 <div id="tab-content1" class="content1">
                     <br />
-                    <img src="./images/test4.jpge" width="250px" height="210px" style="float: left; margin-right: 10px;" />
+
+                    <a onclick="showPopup6()">
+                        <img src="./images/test4.jpge" width="250px" height="250px" style="float: left; margin-right: 10px;" />
+                    </a>
                     <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque commodo tortor ante,
                         sed consequat nulla ultrices sit amet. Integer ornare aliquet metus, vitae volutpat dui
                         bibendum eu. Integer eget eleifend ipsum. Aliquam tristique orci non facilisis lobortis.
@@ -518,7 +529,14 @@
 
 
         <script>
-            function showPopup() { window.open("./images/test4.jpg", "a", "width=400, height=300, left=100, top=50"); }
+           
+           function showPopup1() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+           function showPopup2() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+           function showPopup3() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+           function showPopup4() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+           function showPopup5() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+           function showPopup6() { window.open("../img/test4.jpg", "a", "width=600, height=500, left=100, top=50"); }
+        
         </script>
 </body>
 
