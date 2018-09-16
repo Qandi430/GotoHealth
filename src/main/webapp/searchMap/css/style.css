@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.stWrap{
+	margin-top: 30px;
+}
+.stNav::after{
+    content:'';
+    display: block;
+    clear: both;
+}
+.stNav li{
+    display: block;
+    float: left;
+}
+.stNav li a{
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    background: #4A83FD;
+    color: #fff;
+    transition: all 0.5s;
+}
+.stNav li.active a{
+    background: #000;
+}
+.stNav li:first-child a{
+    border-radius: 10px 0 0 0 ;
+}
+.stNav li:last-child a{
+    border-radius:0  10px 0 0;
+}
+.stCon{
+    background: #000;
+    border-radius:0  10px 10px 10px;
+}
+.stCon > div:after{
+    display: block;
+    clear: both;
+    content: '';
+}
+.stCon > div{
+    min-height: 270px;
+    display: none;
+    color: #fff;
+    padding: 10px;
+}
+.stCon > div.active{
+    display: block;
+}
+.stCon .imgBox{
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+}
+.stCon .textBox{
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+  
+}

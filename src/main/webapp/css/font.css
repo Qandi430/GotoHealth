@@ -1,0 +1,136 @@
+/*NotoSans*/
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-Regular.eot');
+  src: url('../fonts/NotoSans-Regular.woff2') format('woff2'),
+       url('../fonts/NotoSans-Regular.woff') format('woff'),
+       url('../fonts/NotoSans-Regular.ttf') format('truetype'),
+       url('../fonts/NotoSans-Regular.svg#NotoSans-Regular') format('svg'),
+       url('../fonts/NotoSans-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-thin.eot');
+  src: url('../fonts/NotoSans-thin.woff2') format('woff2'),
+       url('../fonts/NotoSans-thin.woff') format('woff'),
+       url('../fonts/NotoSans-thin.ttf') format('truetype'),
+       url('../fonts/NotoSans-thin.svg#NotoSans-thin') format('svg'),
+       url('../fonts/NotoSans-thin.eot?#iefix') format('embedded-opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-DemiLight.eot');
+  src: url('../fonts/NotoSans-DemiLight.woff2') format('woff2'),
+       url('../fonts/NotoSans-DemiLight.woff') format('woff'),
+       url('../fonts/NotoSans-DemiLight.ttf') format('truetype'),
+       url('../fonts/NotoSans-DemiLight.svg#NotoSans-DemiLight') format('svg'),
+       url('../fonts/NotoSans-DemiLight.eot?#iefix') format('embedded-opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-Light.eot');
+  src: url('../fonts/NotoSans-Light.woff2') format('woff2'),
+       url('../fonts/NotoSans-Light.woff') format('woff'),
+       url('../fonts/NotoSans-Light.ttf') format('truetype'),
+       url('../fonts/NotoSans-Light.svg#NotoSans-Light') format('svg'),
+       url('../fonts/NotoSans-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-Medium.eot');
+  src: url('../fonts/NotoSans-Medium.woff2') format('woff2'),
+       url('../fonts/NotoSans-Medium.woff') format('woff'),
+       url('../fonts/NotoSans-Medium.ttf') format('truetype'),
+       url('../fonts/NotoSans-Medium.svg#NotoSans-Medium') format('svg'),
+       url('../fonts/NotoSans-Medium.eot?#iefix') format('embedded-opentype');
+  font-weight: 500;
+  font-style: 600;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-Bold.eot');
+  src: url('../fonts/NotoSans-Bold.woff2') format('woff2'),
+       url('../fonts/NotoSans-Bold.woff') format('woff'),
+       url('../fonts/NotoSans-Bold.ttf') format('truetype'),
+       url('../fonts/NotoSans-Bold.svg#NotoSans-Bold') format('svg'),
+       url('../fonts/NotoSans-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'NotoSans';
+  src: url('../fonts/NotoSans-Black.eot');
+  src: url('../fonts/NotoSans-Black.woff2') format('woff2'),
+       url('../fonts/NotoSans-Black.woff') format('woff'),
+       url('../fonts/NotoSans-Black.ttf') format('truetype'),
+       url('../fonts/NotoSans-Black.svg#NotoSans-Black') format('svg'),
+       url('../fonts/NotoSans-Black.eot?#iefix') format('embedded-opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+/* KoPub-Batang */
+@font-face {
+  font-family: 'KoPubBatang';
+  src: url('../fonts/KoPubBatangMedium.eot');
+  src: url('../fonts/KoPubBatangMedium.woff') format('woff'),
+       url('../fonts/KoPubBatangMedium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'KoPubBatang';
+  src: url('../fonts/KoPubBatangLight.eot');
+  src: url('../fonts/KoPubBatangLight.woff') format('woff'),
+       url('../fonts/KoPubBatangLight.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'KoPubBatang';
+  src: url('../fonts/KoPubBatangBold.eot');
+  src: url('../fonts/KoPubBatangBold.woff') format('woff'),
+       url('../fonts/KoPubBatangBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Roboto */
+@font-face {
+    font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.eot');
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
+       url('../fonts/Roboto-Regular.woff') format('woff'),
+       url('../fonts/Roboto-Regular.ttf') format('truetype'),
+       url('../fonts/Roboto-Regular.svg#Roboto-LightItalic') format('svg'),
+       url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+  src: url('../fonts/Roboto-Bold.eot');
+  src: url('../fonts/Roboto-Bold.woff2') format('woff2'),
+       url('../fonts/Roboto-Bold.woff') format('woff'),
+       url('../fonts/Roboto-Bold.ttf') format('truetype'),
+       url('../fonts/Roboto-Bold.svg#Roboto-LightItalic') format('svg'),
+       url('../fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+
+
+
+
+
+
+
