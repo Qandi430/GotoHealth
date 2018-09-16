@@ -18,8 +18,8 @@
 				<ul class="tab_menu_category cf">
 					<li class="active"><a href="<c:url value="/community/notice_list.jsp"/>">공지사항</a></li>
 					<li><a href="<c:url value="/community/free_list.jsp"/>">자유게시판</a></li>
-					<li><a href="./galleryList.html">갤러리</a></li>
-					<li><a href="./qnaList.html">질문과 답변</a></li>
+					<li><a href="<c:url value="/community/gallery_list.jsp"/>">갤러리</a></li>
+					<li><a href="<c:url value="/community/qna_list.jsp"/>">질문과 답변</a></li>
 				</ul>
 				<select name="arrays" style="float: right; width: 65px; font-size: 15px; height: 30px; margin: 10px 0;">
 					<option value="new">최신순</option>
@@ -47,7 +47,7 @@
 					</tr>
 				</table>
 				<div class="write">
-					<button type="button" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/notice_write.jsp"/>">글쓰기</a></button>
+					<button type="button"  onclick="location.href='<c:url value="/community/notice_write.jsp"/>'" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/notice_write.jsp"/>">글쓰기</a></button>
 				</div>		
 				<ul class="paging cf">
 					<li><a href="javascript:;"></a></li>

@@ -77,7 +77,7 @@
 					</tr>
 				</table>
 				<div class="write">
-					<button type="button" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/exercise_write.jsp"/>">글쓰기</a></button>
+					<button type="button"  onclick="location.href='<c:url value="/community/exercise_write.jsp"/>'" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/exercise_write.jsp"/>">글쓰기</a></button>
 				</div>	
 				<ul class="paging cf">
 					<li><a href="javascript:;"></a></li>
