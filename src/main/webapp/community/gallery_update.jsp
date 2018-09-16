@@ -25,7 +25,7 @@
 				<br>
 				<br>
 				<div class="box_notice">
-					<div class="inner">※ 파일 첨부를 제외한 모든 내역은 필수입니다.</div>
+					<div class="inner">※  모든 내역은 필수입니다.</div>
 				</div>
 				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
@@ -35,7 +35,7 @@
 					<tr>
 					</tr>
 					<tr>
-						<th>파일 첨부</th>
+						<th>파일 첨부 <span>*</span></th>
 						<td>
 							<div class="cf">
 								<input type="text" readonly="readonly" title="File Route" id="fileLoute" placeholder="파일을 첨부하세요.">
