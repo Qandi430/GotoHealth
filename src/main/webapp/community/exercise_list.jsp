@@ -87,6 +87,7 @@
 							<option value="titlecontent">제목+내용</option>
 						</select>
 						<input class="searchinput" type="text" placeholder="검색어를 입력하세요.">
+						<button type="button" id="search" class="btn btn-default" >검색</button>
 					</form>	
 				</div>		
 				<ul class="paging cf">
