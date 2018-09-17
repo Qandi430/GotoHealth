@@ -33,8 +33,6 @@
 						<th>제목</th>
 						<th>닉네임</th>
 						<th>등록일</th>
-						<th>조회수</th>
-						<th>추천수</th>
 					</tr>
 					<tr class="title">
 						<td>10</td>
@@ -42,8 +40,6 @@
 						<td><a href="<c:url value="/community/notice_detail.jsp"/>" style="color: black; text-decoration: none;">헬스합시다. 헬스헬스헬스!</a></td>
 						<td>헬스왕</td>
 						<td>2018.04.24</td>
-						<td>20</td>
-						<td>5</td>
 					</tr>
 				</table>
 				<div class="write">
