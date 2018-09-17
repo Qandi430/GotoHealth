@@ -280,3 +280,6 @@ fieldset[disabled] .btn-default.active {
 #write{color: black; text-decoration: none; display: block; padding: 0;}
 #comment{color: black; text-decoration: none; display: block; width: 54; padding: 6px 12px}
 .btn-warning{background: rgb(175, 36, 36) !important; border-color: rgb(104, 21, 21) !important;}
+.search{width: 250px; margin: 0 auto;}
+.search .searchselect{width: 93px; font-size: 15px;}
+.search .searchinput{border-bottom: 1px solid rgba(0,0,0,0.5); width: 150px; height: 24px; font-size: 14px; text-align: center;}

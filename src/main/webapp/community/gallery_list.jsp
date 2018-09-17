@@ -93,6 +93,16 @@
 				<div class="write">
 					<button type="button"  onclick="location.href='<c:url value="/community/gallery_write.jsp"/>'" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/gallery_write.jsp"/>">글쓰기</a></button>
 				</div>
+				<div class="search">
+					<form action="">
+						<select class="searchselect" name="searchList">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="titlecontent">제목+내용</option>
+						</select>
+						<input class="searchinput" type="text" placeholder="검색어를 입력하세요.">
+					</form>	
+				</div>			
 				<ul class="paging cf">
 					<li><a href="javascript:;"></a></li>
 					<li><a href="javascript:;"></a></li>
