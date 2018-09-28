@@ -25,8 +25,8 @@ public class ListFreeBoardController extends HttpServlet {
 		BoardMapper mapper = 
 			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
 
-//		String col = null;
-//		String word = null;
+		String search = request.getParameter("search");
+		String word = request.getParameter("word");
 		List<Board> list = null;
 		Board board = new Board();
 		
@@ -41,14 +41,35 @@ public class ListFreeBoardController extends HttpServlet {
 		board.setStartRow(startRow);
 		board.setEndRow(endRow);
 		board.setType("자유게시판");
-		int count = 0;
-		count = mapper.boardCnt("자유게시판");
+		int count = 0;board.setKeyword(word);
+		try {
+			if(search.equals("title")) {
+				if(word != null) {
+					count = mapper.boardTitleCnt(board);
+				}
+			}
+			if(search.equals("content")) {
+				if(word != null) {
+					count = mapper.boardContentCnt(board);
+				}
+			}
+			if(search.equals("titlecontent")) {
+				if(word != null) {
+					count = mapper.boardTitleContentCnt(board);
+				}
+			}
+			if(search == "") {
+				count = mapper.boardCnt("자유게시판");
+			}
+		} catch (Exception e) {
+			count = mapper.boardCnt("자유게시판");
+		}
 		int pageCount = 0;
 		int pageBlock = 0;
 		int startPage = 0;
 		int endPage = 0;
 		if(count > 0) {
-			list = mapper.selectBoardAllList(board);
+//			list = mapper.selectBoardAllList(board);
 			pageCount = (count / pageSize) + (count%pageSize == 0 ? 0 : 1);
 			pageBlock = 5;
 			startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
@@ -68,31 +89,31 @@ public class ListFreeBoardController extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
-		
-		/*try {
-			col = request.getParameter("col");
-			word = request.getParameter("word");
+	
+		try {
+			board.setKeyword(word);
 			
-			if(col.equals("title")) {
-				list = mapper.searchTitle(word);
+			if(search.equals("title")) {
+				list = mapper.searchTitle(board);
 			}
-			if(col.equals("content")) {
-				list = mapper.searchContent(word);
+			if(search.equals("content")) {
+				list = mapper.searchContent(board);
 			}
-			if(col.equals("title_content")) {
-				list = mapper.searchTitleContent(word);
+			if(search.equals("titlecontent")) {
+				list = mapper.searchTitleContent(board);
 			}
-			if(col == "") {
-				list = mapper.selectBoard();
+			if(search == "") {
+				list = mapper.selectBoardAllList(board);
 			}
 		} catch (Exception e) {
-			list = mapper.selectBoard();
-		}*/
+			list = mapper.selectBoardAllList(board);
+		}
 
-		// 준비된 데이터를 공유
 		request.setAttribute("list", list);
-//		request.setAttribute("col", col);
-//		request.setAttribute("word", word);
+		if(search != "") {
+			request.setAttribute("search", search);
+			request.setAttribute("word", word);
+		} 
 
 		HttpSession session = (HttpSession) request.getAttribute("user");
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/free_list.jsp");

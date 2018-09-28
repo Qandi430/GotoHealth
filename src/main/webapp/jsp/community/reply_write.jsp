@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,9 +9,6 @@
 <c:import url="/common/includeCss.jsp"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/community/common.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/community/style.css"/>"/>
-<script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script> 
 </head>
 <body>
 	<c:import url="/common/header.jsp"/>
@@ -188,173 +184,80 @@
 						<li class="active"><a href="<c:url value="qnaList.do"/>">질문과 답변</a></li>
 				</ul>
 				</c:if>
-				<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<th>제목</th>
-						<td class="title" colspan="7">${board.title}</td>	
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td class="name">${board.writer}</td>
-						<th>작성일</th>	
-						<td class="reg-date"><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
-						<c:if test="${typeParam != 'notice'}">
-							<th>조회수</th>
-							<td class="cnt">${board.viewCnt}</td>
-							<c:if test="${typeParam != 'qna'}">
-								<th>추천수</th>
-								<td class="cnt"><span class="rec_count"></span></td>
-							</c:if>	
-						</c:if>
-					</tr>
-					<tr>
-						<td colspan="8">${board.content}</td>
-					</tr>	
-				</table>
-				<c:if test="${typeParam != 'notice' and typeParam != 'qna'}">
-					<div class="rec">
-						<button class="btn btn-warning btn-lg" id="rec_update">
-							<span>추천</span>
-						</button>
-					</div>	
-				</c:if>	
-					<div class="rn">
-						<div style="width: 83px; margin: 0 auto;">
-							<form action="replyForm.do">
-								<c:if test="${typeParam == 'qna'}">
-									<input type="hidden" name="no" value="${board.no}">
-									<button class="btn btn-default btn-lg">답변하기</button>
-								</c:if>
-							</form>
-						</div>
-					</div>
-				<div class="update-deletebutton">
-					<a href="updateForm.do?no=${board.no}&typeParam=${typeParam}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">수정</a>
-					<a href="delete.do?no=${board.no}&typeParam=${typeParam}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">삭제</a>
-					<c:if test="${typeParam == 'exercise'}">
-						<a href="<c:url value="exerciseList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseChest'}">
-						<a href="<c:url value="chestList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseBack'}">
-						<a href="<c:url value="backList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseLeg'}">
-						<a href="<c:url value="legList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseShoulder'}">
-						<a href="<c:url value="shoulderList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseArm'}">
-						<a href="<c:url value="armList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseAbs'}">
-						<a href="<c:url value="absList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'exerciseEtc'}">
-						<a href="<c:url value="etcList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'notice'}">
-						<a href="<c:url value="noticeList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'free'}">
-						<a href="<c:url value="freeList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'gallery'}">
-						<a href="<c:url value="galleryList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-					<c:if test="${typeParam == 'qna'}">
-						<a href="<c:url value="qnaList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
-					</c:if>
-				</div>	
-				<div class="rn">
+				<br>
+				<br>
+				<div class="box_notice">
+					<div class="inner">※  &nbsp;모든 내역은 필수입니다.</div>
 				</div>
-				<c:if test="${typeParam != 'notice' and typeParam != 'qna'}">
+				<form action="reply.do" method="post" class="write">
 					<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
-							<td style="border-bottom: none; padding-bottom: 0" ><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
+							<th>제목 <span>*</span></th>
+							<td><input type="text" name="title" placeholder="제목을 입력하세요."></td>
 						</tr>
+						<input type="hidden" name="boardNo" value="${board.no}" >
+						<input type="hidden" name="ref" value="${board.ref}" >
+						<input type="hidden" name="parentNo" value="${board.parentNo}" >
 						<tr>
-							<td><a id="comment" href="<c:url value="/jsp/community/exercise_detail.jsp"/>" type="button" class="btn btn-default comment" style="float: right">등록</a></td>
+							<th>내용 <span>*</span></th>
+							<td><textarea name="content" id="summernote" style="resize: none; overflow-y: auto;"></textarea></td>
 						</tr>
 					</table>
-					<table class="table_qna comment" width="100%" cellpadding="0" cellspacing="0">
-						<tr style="border-top: 1px solid #6d686b">
-							<td>조성일</td>
-							<td style="text-align: right">2015.03.22 13:31</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none">가나다다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<span class="update-button">
-									<button type="button" class="btn btn-default">수정</button>
-									<button type="button" class="btn btn-default">삭제</button>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none"></td>
-						</tr>
-						<tr style="border-top: 1px solid #6d686b">
-							<td>조성일</td>
-							<td style="text-align: right">2015.03.22 13:31</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none">가나다다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<span class="update-button">
-									<button type="button" class="btn btn-default">수정</button>
-									<button type="button" class="btn btn-default">삭제</button>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none"></td>
-						</tr>
-					</table>
-				</c:if>	
+					<c:if test="${typeParam == 'notice'}">
+						<input type="hidden" name="writeType" value="notice">
+						<input type="hidden" name="writeCategory" value="notice">
+					</c:if>
+					<c:if test="${typeParam == 'free'}">
+							<input type="hidden" name="writeType" value="free">
+							<input type="hidden" name="writeCategory" value="free">
+					</c:if>
+					<c:if test="${typeParam == 'gallery'}">
+							<input type="hidden" name="writeType" value="gallery">
+							<input type="hidden" name="writeCategory" value="gallery">
+					</c:if>
+					<c:if test="${typeParam == 'qna'}">
+							<input type="hidden" name="writeType" value="qna">
+							<input type="hidden" name="writeCategory" value="qna">
+					</c:if>
+					<c:if test="${typeParam == 'exercise'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseChest'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseBack'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseLeg'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseShoulder'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseArm'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseAbs'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					<c:if test="${typeParam == 'exerciseEtc'}">
+							<input type="hidden" name="writeType" value="exercise">
+					</c:if>
+					
+					<!-- 나중에 아이디 설정 -->
+					<input type="hidden" name="writer" value="cho">	
+					
+					<div class="box_buttons cf">
+						<a href="<c:url value="detail.do?no=${board.no}&typeParam=qna"/>" class="btn_left">취소하기</a>
+						<button>
+							<a class="btn_right">등록하기</a>
+						</button>	
+					</div>
+				</form>
 			</div>
 		</div>
+		<!-- //container -->
 	</div>
-  <script type="text/javascript">
-	$(function(){
-		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
-		$("#rec_update").click(function(){
-			alert("추천")
-			$.ajax({
-				url: "recomUpdate.do",
-                type: "POST",
-                data: {
-                    no: ${board.no},
-                    id: '${user.id}'
-                },
-                success: function () {
-			        recCount();
-                },
-			});
-		});
-		
-		// 게시글 추천수
-	    function recCount() {
-			$.ajax({
-				url: "recomCount.do",
-                type: "POST",
-                data: {
-                    no: ${board.no}
-                },
-                success: function (count) {
-                	$(".rec_count").html(count);
-                },
-			});
-	    };
-	    recCount();
-	});   
-  </script>
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/community/script.js"/>"></script>

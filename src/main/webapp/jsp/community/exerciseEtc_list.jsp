@@ -71,29 +71,95 @@
 					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
 				</form>
 				<div class="search">
-					<form action="">
-						<select class="searchselect" name="searchList">
+					<form action="etcList.do" method="post">
+						<select class="searchselect" name="search">
+							<option value=''>구분</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 							<option value="titlecontent">제목+내용</option>
 						</select>
-						<input class="searchinput" type="text" placeholder="검색어를 입력하세요.">
-						<button type="button" id="search" class="btn btn-default" >검색</button>
+						<input class="searchinput" type="text" name="word" placeholder="검색어를 입력하세요.">
+						<button id="search" class="btn btn-default" >검색</button>
 					</form>	
 				</div>		
 				<ul class="paging cf">
-					<li><a href="javascript:;"></a></li>
-					<li><a href="javascript:;"></a></li>
-					<li class="active"><a href="javascript:;">1</a></li>
-					<li><a href="javascript:;">2</a></li>
-					<li><a href="javascript:;">3</a></li>
-					<li><a href="javascript:;">4</a></li>
-					<li><a href="javascript:;">5</a></li>
-					<li><a href="javascript:;">6</a></li>
-					<li><a href="javascript:;">7</a></li>
-					<li><a href="javascript:;">8</a></li>
-					<li><a href="javascript:;"></a></li>
-					<li><a href="javascript:;"></a></li>
+					<c:choose>
+						<c:when test="${startPage > 1}">
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="etcList.do?pageNum=1"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="etcList.do?pageNum=1&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>	
+					<c:choose>
+						<c:when test="${startPage > pageBlock}">
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="etcList.do?pageNum=${startPage - 5}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="etcList.do?pageNum=${startPage - 5}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a></a></li>
+						</c:otherwise>	
+					</c:choose>	
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:choose>
+							<c:when test="${i == currentPage}">
+								<li class="active" style="color: white;">${i}</li>
+							</c:when>						
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${empty word and empty search}">
+										<li><a href="etcList.do?pageNum=${i}">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="etcList.do?pageNum=${i}&word=${word}&search=${search}">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>		
+						</c:choose>				
+					</c:forEach>	
+					<c:choose>
+						<c:when test="${endPage < pageCount}">
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="etcList.do?pageNum=${startPage + 5}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="etcList.do?pageNum=${startPage + 5}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${endPage < pageCount}">
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="etcList.do?pageNum=${pageCount}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="etcList.do?pageNum=${pageCount}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>

@@ -25,13 +25,12 @@ public class ListExerciseEtcsBoardController extends HttpServlet {
 		BoardMapper mapper = 
 			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
 
-//		List<Board> list = mapper.selectBoardAllList();
-		
-/*		String col = null;
-		String word = null;
+		String search = request.getParameter("search");
+		String word = request.getParameter("word");
 		List<Board> list = null;
+		Board board = new Board();
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
 			pageNum = "1";
@@ -39,59 +38,84 @@ public class ListExerciseEtcsBoardController extends HttpServlet {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
+		board.setStartRow(startRow);
+		board.setEndRow(endRow);
+		board.setCategory("유산소");
 		int count = 0;
-		count = mapper.boardCnt();
+		board.setKeyword(word);
+		try {
+			if(search.equals("title")) {
+				if(word != null) {
+					count = mapper.boardCategoryTitleCnt(board);
+				}
+			}
+			if(search.equals("content")) {
+				if(word != null) {
+					count = mapper.boardCategoryContentCnt(board);
+				}
+			}
+			if(search.equals("titlecontent")) {
+				if(word != null) {
+					count = mapper.boardCategoryTitleContentCnt(board);
+				}
+			}
+			if(search == "") {
+				count = mapper.boardCategoryCnt("유산소");
+			}
+		} catch (Exception e) {
+			count = mapper.boardCategoryCnt("유산소");
+		}
 		int pageCount = 0;
 		int pageBlock = 0;
 		int startPage = 0;
 		int endPage = 0;
-//		int number = 0;
 		if(count > 0) {
-			list = mapper.selectBoard(startRow, endRow);
-//			number = count - (currentPage - 1) * pageSize;
+//			list = mapper.selectBoardAllList2(board);
 			pageCount = (count / pageSize) + (count%pageSize == 0 ? 0 : 1);
 			pageBlock = 5;
 			startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 			endPage = startPage + pageBlock - 1;
 			if(endPage > pageCount){
 				endPage = pageCount;
-			}
-		}
+			} // inner if
+		} // outer if
+		
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("startRow", startRow);
 		request.setAttribute("endRow", endRow);
-		request.setAttribute("pageCount", count);
+		request.setAttribute("count", count);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		request.setAttribute("pageCount", pageCount);*/
-		/*try {
-			col = request.getParameter("col");
-			word = request.getParameter("word");
+		request.setAttribute("pageCount", pageCount);
+
+		try {
+			board.setKeyword(word);
 			
-			if(col.equals("title")) {
-				list = mapper.searchTitle(word);
+			if(search.equals("title")) {
+				list = mapper.searchCategoryTitle(board);
 			}
-			if(col.equals("content")) {
-				list = mapper.searchContent(word);
+			if(search.equals("content")) {
+				list = mapper.searchCategoryContent(board);
 			}
-			if(col.equals("title_content")) {
-				list = mapper.searchTitleContent(word);
+			if(search.equals("titlecontent")) {
+				list = mapper.searchCategoryTitleContent(board);
 			}
-			if(col == "") {
-				list = mapper.selectBoard();
+			if(search == "") {
+				list = mapper.selectBoardAllList2(board);
 			}
 		} catch (Exception e) {
-			list = mapper.selectBoard();
-		}*/
+			list = mapper.selectBoardAllList2(board);
+		}
 
-		// 준비된 데이터를 공유
-//		request.setAttribute("list", list);
-//		request.setAttribute("col", col);
-//		request.setAttribute("word", word);
-
+		request.setAttribute("list", list);
+		if(search != "") {
+			request.setAttribute("search", search);
+			request.setAttribute("word", word);
+		} 
+		
 		HttpSession session = (HttpSession) request.getAttribute("user");
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/exerciseEtc_list.jsp");
 		rd.forward(request, response);

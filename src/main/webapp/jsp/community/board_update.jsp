@@ -205,7 +205,42 @@
 						<input type="hidden" name="no" value="${board.no}">
 						<input type="hidden" name="typeParam" value="${typeParam}">
 						<div class="box_buttons cf">
-							<a href="<c:url value="/jsp/community/exercise_detail.jsp"/>" class="btn_left">취소하기</a>
+						<c:if test="${typeParam == 'notice'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=notice'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'free'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=free'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'gallery'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=gallery'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'qna'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=qna'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exercise'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exercise'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseChest'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseChest'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseBack'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseBack'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseLeg'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseLeg'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseShoulder'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseShoulder'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseArm'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseArm'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseAbs'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseAbs'/>" class="btn_left">취소하기</a>
+						</c:if>
+						<c:if test="${typeParam == 'exerciseEtc'}">
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseEtc'/>" class="btn_left">취소하기</a>
+						</c:if>
 							<button>
 								<a class="btn_right">수정하기</a>
 							</button>

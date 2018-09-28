@@ -71,20 +71,28 @@
 					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
 				</form>
 				<div class="search">
-					<form action="">
-						<select class="searchselect" name="searchList">
+					<form action="armList.do" method="post">
+						<select class="searchselect" name="search">
+							<option value=''>구분</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 							<option value="titlecontent">제목+내용</option>
 						</select>
-						<input class="searchinput" type="text" placeholder="검색어를 입력하세요.">
-						<button type="button" id="search" class="btn btn-default" >검색</button>
+						<input class="searchinput" type="text" name="word" placeholder="검색어를 입력하세요.">
+						<button id="search" class="btn btn-default" >검색</button>
 					</form>	
 				</div>		
 				<ul class="paging cf">
 					<c:choose>
 						<c:when test="${startPage > 1}">
-							<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="armList.do?pageNum=1"></a></li>
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="armList.do?pageNum=1"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="armList.do?pageNum=1&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
 							<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a></a></li>
@@ -92,7 +100,14 @@
 					</c:choose>	
 					<c:choose>
 						<c:when test="${startPage > pageBlock}">
-							<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="armList.do?pageNum=${startPage - 5}"></a></li>
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="armList.do?pageNum=${startPage - 5}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="armList.do?pageNum=${startPage - 5}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
 							<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a></a></li>
@@ -104,13 +119,27 @@
 								<li class="active" style="color: white;">${i}</li>
 							</c:when>						
 							<c:otherwise>
-								<li><a href="armList.do?pageNum=${i}">${i}</a></li>
+								<c:choose>
+									<c:when test="${empty word and empty search}">
+										<li><a href="armList.do?pageNum=${i}">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="armList.do?pageNum=${i}&word=${word}&search=${search}">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>		
 						</c:choose>				
 					</c:forEach>	
 					<c:choose>
 						<c:when test="${endPage < pageCount}">
-							<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="armList.do?pageNum=${startPage + 5}"></a></li>
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="armList.do?pageNum=${startPage + 5}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="armList.do?pageNum=${startPage + 5}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
 							<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a></a></li>
@@ -118,7 +147,14 @@
 					</c:choose>
 					<c:choose>
 						<c:when test="${endPage < pageCount}">
-							<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="armList.do?pageNum=${pageCount}"></a></li>
+							<c:choose>
+								<c:when test="${empty word and empty search}">
+									<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="armList.do?pageNum=${pageCount}"></a></li>
+								</c:when>
+								<c:otherwise>
+									<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="armList.do?pageNum=${pageCount}&word=${word}&search=${search}"></a></li>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
 							<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a></a></li>

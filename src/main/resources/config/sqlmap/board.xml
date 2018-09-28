@@ -43,14 +43,6 @@
 		<result column="id" property="id" />
 		<result column="no" property="no" />
 	</resultMap>
-<!--  	
-	게시물 전체 목록 가져오기
-	<select id="selectBoardAllList" resultMap="boardMap">
-		select *
-		  from tb_board
-		 order by no desc
-	</select>
-	 -->
 	 
 	<!-- 게시물 전체 목록 가져오기 -->
 	<select id="selectBoardAllList" parameterType="Board" resultMap="boardMap">
@@ -82,27 +74,236 @@
 	      where type = #{type}
 	</select>
 	
+	<!-- 검색제목 글개수 가져오기(type) -->
+	<select id="boardTitleCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where type = #{type}
+	        and title like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색내용 글개수 가져오기(type) -->
+	<select id="boardContentCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where type = #{type}
+	        and content like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색제목내용 글개수 가져오기(type) -->
+	<select id="boardTitleContentCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where type = #{type}
+	        and title like '%' || #{keyword} || '%'
+	         or type = #{type}
+	        and content like '%' || #{keyword} || '%'
+	</select>
+	
 	<!-- 글개수 가져오기(category) -->
 	<select id="boardCategoryCnt" parameterType="string" resultType="int">
 		select count(*) from tb_board 
 	      where category = #{category}
 	</select>
 	
+	<!-- 검색제목 글개수 가져오기(category) -->
+	<select id="boardCategoryTitleCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where category = #{category}
+	        and title like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색내용 글개수 가져오기(category) -->
+	<select id="boardCategoryContentCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where category = #{category}
+	        and content like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색제목내용 글개수 가져오기(category) -->
+	<select id="boardCategoryTitleContentCnt" parameterType="Board" resultType="int">
+		select count(*) from tb_board 
+	      where category = #{category}
+	        and title like '%' || #{keyword} || '%'
+	         or category = #{category}
+	        and content like '%' || #{keyword} || '%'
+	</select>
+		
 	<!-- 게시글 조회하기 -->
 	<select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
 		select *
 		  from tb_board
 		 where no = #{no}
 	</select>
+	
+	<!-- 제목 검색(type) 기능 -->
+	<select id="searchTitle" parameterType="Board" resultMap="boardMap">
+	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where type = #{type}
+	                    and title like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 내용 검색(type) 기능 -->
+	<select id="searchContent" parameterType="Board" resultMap="boardMap">
+ 	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where type = #{type}
+	                    and content like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 제목+내용 검색(type) 기능 -->
+	<select id="searchTitleContent" parameterType="Board" resultMap="boardMap">
+  	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where type = #{type}
+	                    and title like '%' ||  #{keyword} || '%'
+	                     or type = #{type}
+					    and content like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 제목 검색(category) 기능 -->
+	<select id="searchCategoryTitle" parameterType="Board" resultMap="boardMap">
+	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where category = #{category}
+	                    and title like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 내용 검색(category) 기능 -->
+	<select id="searchCategoryContent" parameterType="Board" resultMap="boardMap">
+ 	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where category = #{category}
+	                    and content like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 제목+내용 검색(category) 기능 -->
+	<select id="searchCategoryTitleContent" parameterType="Board" resultMap="boardMap">
+  	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*
+	                   from tb_board b
+	                  where category = #{category}
+	                    and title like '%' ||  #{keyword} || '%'
+	                     or category = #{category}
+					    and content like '%' ||  #{keyword} || '%'
+	          order by reg_date desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
 	 
 	<!-- 게시물 등록하기 -->
 	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select s_board_no.nextVal from dual
+		</selectKey>	
 		insert into tb_board(
-			no, type, category, title, writer, content
+			no, type, category, title, writer, content, ref
 		) values (
-			s_board_no.nextval, #{type}, #{category}, #{title}, #{writer}, #{content}
+			#{no}, #{type}, #{category}, #{title}, #{writer}, #{content}, #{no}
 		)
 	</insert>
+	
+	<!-- 전체 목록 가져오기(오라클 계층 쿼리 적용) -->
+	<select id="selectQnaBoard" parameterType="int" resultMap="boardMap">
+        select *
+        from(
+        select rownum rnum, a.*
+          from( select level, b.*
+				  from tb_board b
+		         where type = '질문과 답변'
+				 start with parent_no = 0
+			   connect by prior no = parent_no 
+				 order siblings by ref desc ) a)
+         where rnum between #{startRow} and #{endRow}
+	</select>
+		
+	<!-- 답변글 등록 (오라클 계층 쿼리) -->
+	<insert id="replyInsert" parameterType="Board">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select s_board_no.nextVal from dual
+		</selectKey>
+		insert into tb_board(
+			no, type, category, title, writer, content, ref, parent_no
+		) values (
+			#{no}, #{type}, #{category}, #{title}, #{writer}, #{content}, #{ref}, #{parentNo}
+		)
+	</insert>
+	
+	<!-- 제목 검색(Qna) 기능 -->
+	<select id="searchQnaTitle" parameterType="Board" resultMap="boardMap">
+       select *
+        from(
+        select rownum rnum, a.*
+          from( select level, b.*
+				  from tb_board b
+		         where type = '질문과 답변'
+	                    and title like '%' ||  #{keyword} || '%'
+				 start with parent_no = 0
+			   connect by prior no = parent_no 
+				 order siblings by ref desc ) a)
+         where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 내용 검색(Qna) 기능 -->
+	<select id="searchQnaContent" parameterType="Board" resultMap="boardMap">
+       select *
+        from(
+        select rownum rnum, a.*
+          from( select level, b.*
+				  from tb_board b
+		         where type = '질문과 답변'
+                   and content like '%' ||  #{keyword} || '%'
+				 start with parent_no = 0
+			   connect by prior no = parent_no 
+				 order siblings by ref desc ) a)
+         where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 제목+내용 검색(Qna) 기능 -->
+	<select id="searchQnaTitleContent" parameterType="Board" resultMap="boardMap">
+       select *
+        from(
+        select rownum rnum, a.*
+          from( select level, b.*
+				  from tb_board b
+		         where type = '질문과 답변'
+                   and title like '%' ||  #{keyword} || '%'
+                    or type = '질문과 답변'
+	               and content like '%' ||  #{keyword} || '%'
+				 start with parent_no = 0
+			   connect by prior no = parent_no 
+				 order siblings by ref desc ) a)
+         where rnum between #{startRow} and #{endRow}
+	</select>	
+	
+	<!-- 시퀀스 조회 -->
+	<select id="getSeq" resultType="int">
+		select s_board_no.nextVal from dual
+	</select>
 	
 	<!-- 게시물 수정하기 -->
 	<update id="updateBoard" parameterType="Board">
@@ -124,4 +325,34 @@
 		 where no = #{no}
 	</delete>
 	
+	<!-- Qna 삭제하기 -->
+	<delete id="deleteQnaBoard" parameterType="int">
+		delete from tb_board 
+	     where no in (
+	        select no 
+	          from tb_board
+	         start with no = #{no} 
+	       connect by prior no = parent_no 
+	     )  
+	</delete>
+		
+	<!-- 동일 게시글 추천 여부 검색 -->
+	<select id="recCheck" parameterType="Recom" resultType="int">
+		select count(*) from tb_recom where no = #{no} and id = #{id}
+	</select>
+	
+	<!-- 게시글 추천 -->
+	<insert id="recUpdate" parameterType="Recom">
+		insert into tb_recom(no, id) values(#{no}, #{id})
+	</insert>
+	
+	<!-- 게시글 추천 취소 -->
+	<delete id="recDelete" parameterType="Recom">
+		delete from tb_recom where no = #{no} and id = #{id}
+	</delete>
+	
+	<!-- 게시글 추천수 -->
+	<select id="recCount" parameterType="int" resultType="int">
+		select count(*) from tb_recom where no = #{no}
+	</select>
 </mapper>
