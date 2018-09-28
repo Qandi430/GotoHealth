@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
 	<div class="logo">
-		<h1><a href="<c:url value="/jsp/main.jsp"/>"><img src="<c:url value="/img/logo.png"/>" alt="" class="img-responsive"></a></h1>
+		<h1><a href="<c:url value="/main.do"/>"><img src="<c:url value="/img/logo.png"/>" alt="" class="img-responsive"></a></h1>
 	</div>
 	<nav>
 		<ul>
@@ -11,9 +11,18 @@
 			<li><a href="<c:url value="/jsp/protain/product.jsp"/>">보충제</a></li>
 			<li><a href="<c:url value="/jsp/healthsearch/searchMap.jsp"/>">헬스장 검색</a></li>
 			<li><a href="<c:url value="/jsp/community/exercise_list.jsp"/>">운동법</a></li>
-			<li><a href="#" data-toggle="modal" data-target="#login">로그인</a></li>
-			<li><a href="<c:url value="/jsp/member/signup.jsp"/>">회원가입</a></li>
-			<li><a href="<c:url value="/jsp/member/mypage.jsp"/>">마이페이지</a></li>
+			<c:choose>
+				<c:when test="${empty user}">
+		      		<li><a href="#" data-toggle="modal" data-target="#login">로그인</a></li>
+					<li><a href="<c:url value="/signupForm.do"/>">회원가입</a></li>
+		      	</c:when>
+		      	<c:otherwise>
+		      		<li><a href="<c:url value="/mypage.do"/>">마이페이지</a></li>
+		      		<li><a href="<c:url value="/logout.do"/>">로그아웃</a></li>
+		      	</c:otherwise>
+			</c:choose>
+			
+			
 		</ul>
 	</nav>
 	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -25,11 +34,11 @@
     </div>
        <div class="loginWrap">
            Login
-             <form>
-                 <input type="text" id="username" placeholder="Username">
-                 <input type="password" id="password" placeholder="Password">
+             <form id="loginForm" action="<c:url value="/login.do"/>" method="post" name="loginForm">
+                 <input type="text" id="id" name="id" placeholder="Username">
+                 <input type="password" id="pass" name="pass" placeholder="Password">
              </form>
-           <button class="forgot">FORGOT PASSWORD ?</button> <button class="login">LOG IN</button> <button class="signup" onclick="location.href='<c:url value="/member/signup.jsp"/>'">SIGN UP</button>
+           <button class="forgot">FORGOT PASSWORD ?</button> <button class="login" id="login_btn">LOG IN</button> <button class="signup" onclick="location.href='<c:url value="/signupForm.do"/>'">SIGN UP</button>
          </div>
       </div>
     </div>

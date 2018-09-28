@@ -9,7 +9,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Go To Health!!</title>
 	<c:import url="/common/includeCss.jsp"/>
-
 </head>
 <body>
 	<c:import url="/common/header.jsp"/>
@@ -182,7 +181,28 @@
 	</div>
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
+	<c:if test="${alert eq 'y' }">
+		<script>
+			alert("등록된 회원정보가 존재하지 않습니다");s
+		</script>
+	</c:if>
+	
 	<script>
+		var msg;
+		<c:choose>
+		    <c:when test="${alert eq 'y' }">
+				msg = "등록된 회원정보가 존재하지 않습니다.";
+				alert(msg);
+		    </c:when>
+		    <c:when test="${alert eq 's'}">
+		        msg = "승인후 회원가입이 완료됩니다.";
+		        alert(msg);
+		    </c:when>
+		</c:choose>
+		
+	</script>
+	<script>
+		
 		var wow = new WOW({});
 		wow.init();
 	</script>

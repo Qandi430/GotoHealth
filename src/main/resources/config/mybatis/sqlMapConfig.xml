@@ -28,9 +28,9 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="config\sqlmap\board.xml"/>
-		<mapper resource="config\sqlmap\member.xml"/>
-		<mapper resource="config\sqlmap\message.xml"/>
-		<mapper resource="config\sqlmap\healthsearch.xml"/>
+		<mapper resource="config/sqlmap/board.xml"/>
+		<mapper resource="config/sqlmap/member.xml"/>
+		<mapper resource="config/sqlmap/message.xml"/>
+		<mapper resource="config/sqlmap/healthsearch.xml"/>
 	</mappers>
 </configuration>

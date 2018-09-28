@@ -32,9 +32,7 @@
 	display: block;
 	clear: both;
 }
-.inputWrap:last-child{
-	border: 0;
-}
+
 .inputWrap input{
 	display: inline-block;
 	width: 100%;
@@ -93,6 +91,16 @@
 	border-color: orange;
 	color: #fff;
 	border-radius: 20px;
+}
+.inputWrap.radioWrap input.inline{
+	width: auto;
+	height: auto;
+}
+.inputWrap.radioWrap label.inline{
+	width: auto;
+}
+.inputWrap.trFile{
+	display: none;
 }
 /*mypage*/
 .myPage{

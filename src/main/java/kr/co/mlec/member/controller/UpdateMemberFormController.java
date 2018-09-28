@@ -1,6 +1,7 @@
 package kr.co.mlec.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/logout.do")
-public class LogoutController extends HttpServlet{
+import com.google.gson.Gson;
+
+import kr.co.mlec.repository.domain.Member;
+
+@WebServlet("/updateMemberForm.do")
+public class UpdateMemberFormController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인 성공, 사용자 정보를 관리한다.
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		session.invalidate();
-		//메인 페이지로 이동하기 (세션에 저장하기 때문에 foward필요없음)
-		response.sendRedirect(request.getContextPath()+"/main.do");
+		Member user = (Member) session.getAttribute("user");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.print(new Gson().toJson(user));
+		out.close();
+		
 	}
 
 	
