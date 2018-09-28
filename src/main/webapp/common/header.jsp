@@ -7,10 +7,10 @@
 	</div>
 	<nav>
 		<ul>
-			<li><a href="<c:url value="/jsp/community/notice_list.jsp"/>">커뮤니티</a></li>
+			<li><a href="<c:url value="/board/noticeList.do"/>">커뮤니티</a></li>
 			<li><a href="<c:url value="/jsp/protain/product.jsp"/>">보충제</a></li>
 			<li><a href="<c:url value="/jsp/healthsearch/searchMap.jsp"/>">헬스장 검색</a></li>
-			<li><a href="<c:url value="/jsp/community/exercise_list.jsp"/>">운동법</a></li>
+			<li><a href="<c:url value="/board/exerciseList.do"/>">운동법</a></li>
 			<c:choose>
 				<c:when test="${empty user}">
 		      		<li><a href="#" data-toggle="modal" data-target="#login">로그인</a></li>
@@ -21,8 +21,6 @@
 		      		<li><a href="<c:url value="/logout.do"/>">로그아웃</a></li>
 		      	</c:otherwise>
 			</c:choose>
-			
-			
 		</ul>
 	</nav>
 	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

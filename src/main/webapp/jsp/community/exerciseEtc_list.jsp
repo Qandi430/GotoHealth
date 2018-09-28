@@ -8,8 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GoToHealth - Exercise</title>
 <c:import url="/common/includeCss.jsp"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/community/css/common.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/community/css/style.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/common.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/style.css"/>"/>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script> 
 </head>
 <body>
 	<c:import url="/common/header.jsp"/>
@@ -22,14 +25,14 @@
 				</ul>
 				<div class="box_sort cf">
 					<ul class="list_sort cf">
-						<li><a href="javascript:;" class="active">전체</a></li>
-						<li><a href="javascript:;">가슴</a></li>
-						<li><a href="javascript:;">등</a></li>
-						<li><a href="javascript:;">다리</a></li>
-						<li><a href="javascript:;">어깨</a></li>
-						<li><a href="javascript:;">팔</a></li>
-						<li><a href="javascript:;">복근</a></li>
-						<li><a href="javascript:;">유산소</a></li>
+						<li><a href="exerciseList.do">전체</a></li>
+						<li><a href="chestList.do">가슴</a></li>
+						<li><a href="backList.do">등</a></li>
+						<li><a href="legList.do">다리</a></li>
+						<li><a href="shoulderList.do">어깨</a></li>
+						<li><a href="armList.do">팔</a></li>
+						<li><a href="absList.do">복근</a></li>
+						<li><a href="etcList.do" class="active">유산소</a></li>
 					</ul>
 				</div>
 				<div class="cf">
@@ -50,20 +53,23 @@
 						<th>추천수</th>
 					</tr>
 				<c:forEach var="board" items="${list}" >
-					<tr class="title">
-						<td>${board.no}</td>
-						<td>${board.category}</td>
-						<td><a href="<c:url value="/community/exercise_detail.jsp"/>" style="color: black; text-decoration: none;">${board.content}</a></td>
-						<td>${board.writer}</td>
-						<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
-						<td>${board.viewCnt}</td>
-						<td>${board.viewCnt}</td>
-					</tr>
+					<c:if test="${board.type == '운동방법' && board.category == '유산소'}">
+						<tr class="title">
+							<td>${board.no}</td>
+							<td>${board.category}</td>
+							<td><a href="detail.do?no=${board.no}&typeParam=exerciseEtc" style="color: black; text-decoration: none;">${board.title}</a></td>
+							<td>${board.writer}</td>
+							<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
+							<td>${board.viewCnt}</td>
+							<td>${board.viewCnt}</td>
+						</tr>
+					</c:if>
 				</c:forEach>	
 				</table>
-				<div class="write">
-					<button type="button"  onclick="location.href='writeForm.do'" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="writeForm.do"/>">글쓰기</a></button>
-				</div>
+				<form action="/gth/board/writeForm.do" method="post">
+					<input type="hidden" name="typeParam" value="exerciseEtc">
+					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+				</form>
 				<div class="search">
 					<form action="">
 						<select class="searchselect" name="searchList">
@@ -95,6 +101,6 @@
 	</div>
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
-	<script src="<c:url value="/community/js/script.js"/>"></script>
+	<script src="<c:url value="/js/community/script.js"/>"></script>
 </body>
 </html>

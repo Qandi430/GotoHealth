@@ -38,10 +38,10 @@
 .paging a{display: block; color: #463d47;  line-height: 38px;}
 .paging li.active{background: #000; border-color: #000;}
 .paging li.active a{color: #fff;}
-.paging li:nth-child(1){border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');}
+/* .paging li:nth-child(1){border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');}
 .paging li:nth-child(2){background-image: url('/gth/img/community/arrow_left_paging.png');}
 .paging li:nth-last-child(2){background-image: url('/gth/img/community/arrow_right_paging.png');}
-.paging li:last-child{border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');}
+.paging li:last-child{border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');}  */
 
 /* 게시글 조회 */
 .table_detail{margin-top: 60px; border-bottom: 1px solid #dcdcdc;}
@@ -286,3 +286,4 @@ fieldset[disabled] .btn-default.active {
 .search .btn .btn-default:hover{border:none; background: none}
 #search{width: 56px; height: 30px;  border:none}
 #search:hover{background: transparent;}
+.paging a{display: block; color: #463d47; height: 100%;}

@@ -1,8 +1,6 @@
 package kr.co.mlec.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,15 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.common.db.MyAppSqlConfig;
 import kr.co.mlec.repository.domain.Board;
-import kr.co.mlec.repository.domain.BoardFile;
-import kr.co.mlec.repository.domain.Comment;
 import kr.co.mlec.repository.mapper.BoardMapper;
 
 
-@WebServlet("/board/detail.do")
-public class DetailBoardController extends HttpServlet {
+@WebServlet("/board/updateForm.do")
+public class UpdateFormController extends HttpServlet {
 	
-	public void service(HttpServletRequest request, HttpServletResponse response) 
+	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		request.setCharacterEncoding("utf-8");
 		
@@ -30,21 +26,15 @@ public class DetailBoardController extends HttpServlet {
 		String typeParam = request.getParameter("typeParam");
 		
 		BoardMapper mapper = 
-			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
-		mapper.viewCntUpdate(no);
+				MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
+	
 		Board board = mapper.selectBoardByNo(no);
 		
-//		List<Comment> cList = new ArrayList<>();
-//		cList = mapper.commentList(no);
-//		
-//		board.setCommentList(cList);
-		
-		HttpSession session = (HttpSession) request.getAttribute("user");
-		request.setAttribute("board", board);		
+		request.setAttribute("board", board);
 		request.setAttribute("typeParam", typeParam);
-//		request.setAttribute("comment", comment);
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/board_detail.jsp");
+		HttpSession session = (HttpSession) request.getAttribute("user");	
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/board_update.jsp");
 		rd.forward(request, response);
-	} // service	
+	} // service
 	
 } // end class

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,10 +17,10 @@
 		<div class="container page_qna">
 			<div class="inner">
 				<ul class="tab_menu_category cf">
-					<li class="active"><a href="<c:url value="/jsp/community/notice_list.jsp"/>">공지사항</a></li>
-					<li><a href="<c:url value="/jsp/community/free_list.jsp"/>">자유게시판</a></li>
-					<li><a href="<c:url value="/jsp/community/gallery_list.jsp"/>">갤러리</a></li>
-					<li><a href="<c:url value="/jsp/community/qna_list.jsp"/>">질문과 답변</a></li>
+					<li class="active"><a href="<c:url value="noticeList.do"/>">공지사항</a></li>
+					<li><a href="<c:url value="freeList.do"/>">자유게시판</a></li>
+					<li><a href="<c:url value="galleryList.do"/>">갤러리</a></li>
+					<li><a href="<c:url value="qnaList.do"/>">질문과 답변</a></li>
 				</ul>
 				<select name="arrays" style="float: right; width: 65px; font-size: 15px; height: 30px; margin: 10px 0;">
 					<option value="new">최신순</option>
@@ -34,17 +35,22 @@
 						<th>닉네임</th>
 						<th>등록일</th>
 					</tr>
-					<tr class="title">
-						<td>10</td>
-						<td>공지</td>
-						<td><a href="<c:url value="/jsp/community/notice_detail.jsp"/>" style="color: black; text-decoration: none;">헬스합시다. 헬스헬스헬스!</a></td>
-						<td>헬스왕</td>
-						<td>2018.04.24</td>
-					</tr>
+				<c:forEach var="board" items="${list}" >
+					<c:if test="${board.type == '공지사항'}">
+						<tr class="title">
+							<td>${board.no}</td>
+							<td>${board.category}</td>
+							<td><a href="detail.do?no=${board.no}&typeParam=notice" style="color: black; text-decoration: none;">${board.title}</a></td>
+							<td>${board.writer}</td>
+							<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
+						</tr>
+					</c:if>
+				</c:forEach>	
 				</table>
-				<div class="write">
-					<button type="button"  onclick="location.href='<c:url value="/jsp/community/notice_write.jsp"/>'" class="btn btn-default" style="margin: 15px 1011px"><a id="write" href="<c:url value="/community/notice_write.jsp"/>">글쓰기</a></button>
-				</div>	
+				<form action="/gth/board/writeForm.do" method="post">
+					<input type="hidden" name="typeParam" value="notice">
+					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+				</form>
 				<div class="search">
 					<form action="">
 						<select class="searchselect" name="searchList">
@@ -57,18 +63,48 @@
 					</form>	
 				</div>			
 				<ul class="paging cf">
-					<li><a href="javascript:;"></a></li>
-					<li><a href="javascript:;"></a></li>
-					<li class="active"><a href="javascript:;">1</a></li>
-					<li><a href="javascript:;">2</a></li>
-					<li><a href="javascript:;">3</a></li>
-					<li><a href="javascript:;">4</a></li>
-					<li><a href="javascript:;">5</a></li>
-					<li><a href="javascript:;">6</a></li>
-					<li><a href="javascript:;">7</a></li>
-					<li><a href="javascript:;">8</a></li>
-					<li><a href="javascript:;"></a></li>
-					<li><a href="javascript:;"></a></li>
+					<c:choose>
+						<c:when test="${startPage > 1}">
+							<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a href="noticeList.do?pageNum=1"></a></li>
+						</c:when>
+						<c:otherwise>
+							<li style="border-left: 1px solid #e6e0e7; border-radius: 3px 0 0 3px; background-image: url('/gth/img/community/arrow_double_left_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>	
+					<c:choose>
+						<c:when test="${startPage > pageBlock}">
+							<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a href="noticeList.do?pageNum=${startPage - 5}"></a></li>
+						</c:when>
+						<c:otherwise>
+							<li style="background-image: url('/gth/img/community/arrow_left_paging.png');"><a></a></li>
+						</c:otherwise>	
+					</c:choose>	
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:choose>
+							<c:when test="${i == currentPage}">
+								<li class="active" style="color: white;">${i}</li>
+							</c:when>						
+							<c:otherwise>
+								<li><a href="noticeList.do?pageNum=${i}">${i}</a></li>
+							</c:otherwise>		
+						</c:choose>				
+					</c:forEach>	
+					<c:choose>
+						<c:when test="${endPage < pageCount}">
+							<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a href="noticeList.do?pageNum=${startPage + 5}"></a></li>
+						</c:when>
+						<c:otherwise>
+							<li style="background-image: url('/gth/img/community/arrow_right_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${endPage < pageCount}">
+							<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a href="noticeList.do?pageNum=${pageCount}"></a></li>
+						</c:when>
+						<c:otherwise>
+							<li style="border-radius: 0 3px 3px 0; background-image: url('/gth/img/community/arrow_double_right_paging.png');"><a></a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
