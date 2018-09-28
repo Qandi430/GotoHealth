@@ -64,21 +64,56 @@
     width: 50%;
     float: left;
     padding: 0 10px;
-  
+  	
 }
+
 </style>
-<%-- <link href="<c:url value="/css/healthsearch/style.css"/>" rel="stylesheet" type="text/css"/> --%>
+ <link href="<c:url value="/searchMap/css/style2.css"/>" rel="stylesheet" type="text/css"/> 
+
 </head>
 <body>
 	<c:import url="/common/header.jsp"/>
 	<div id="wrap">
-		<div class="container">
+		<div class="container" style="padding-top:10px;">
 			<div class="searchWrap">
-				<img src="<c:url value="/img/searchMap/map.png"/>" class="img-responsive center-block"/>
+				<!--  -->
+				
+<div class="map_wrap" >
+
+    <div id="map" style="width:100%;height:140%;position:relative;overflow:hidden;"></div>
+    <div class="hAddr">
+        <span class="title">지도중심기준 행정동 주소정보</span>
+        <span id="centerAddr"></span>
+    </div>
+
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+    
+</div>
+				
+				
+				
+				<!--  -->
 			</div>
+			
+			
+			<!--트레이너 화면단  -->
 			<div class="searchTrainer">
-				<div class="row">
-					<div class="col-md-6">
+				<div class="row" style="margin-top:150px">
+					<div class="col-md-6" >
 						<div class="stWrap">
 							<ul class="stNav">
 								<li class="active" data-target="con1"><a href="#" >정보</a></li>
@@ -276,5 +311,8 @@
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/healthsearch/script.js"/>"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b75a51b551d9bdf76c11d18c7194695e&libraries=services"></script>
+<script src="../searchMap/js/mapscript.js">
+</script>
 </body>
 </html>
