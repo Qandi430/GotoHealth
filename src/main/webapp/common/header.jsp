@@ -8,7 +8,7 @@
 	<nav>
 		<ul>
 			<li><a href="<c:url value="/board/noticeList.do"/>">커뮤니티</a></li>
-			<li><a href="<c:url value="/jsp/protain/product.jsp"/>">보충제</a></li>
+			<li><a href="<c:url value="/protain/protain.do"/>">보충제</a></li>
 			<li><a href="<c:url value="/jsp/healthsearch/searchMap.jsp"/>">헬스장 검색</a></li>
 			<li><a href="<c:url value="/board/exerciseList.do"/>">운동법</a></li>
 			<c:choose>
