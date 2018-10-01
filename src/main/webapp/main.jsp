@@ -60,7 +60,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-5">
-						<a href="<c:url value="/searchMap/searchMap.jsp"/>" class="item01">
+						<a href="<c:url value="/gth/healthsearch.do"/>" class="item01">
 							<h5>지도 검색</h5>
 							<img src="img/contents03_item01.jpg" alt="" class="img-responsive center-block">
 							<p>집 주변 헬스장과 트레이너를 찾아볼 수 있습니다.</p>
