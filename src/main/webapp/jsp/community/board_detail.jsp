@@ -213,9 +213,10 @@
 				</table>
 				<c:if test="${typeParam != 'notice' and typeParam != 'qna'}">
 					<div class="rec">
-						<button class="btn btn-warning btn-lg" id="rec_update">
-							<span>추천</span>
-						</button>
+					<button class="w3-button w3-black w3-round" id="rec_update" style="position: relative;">
+						<i class="fa fa-heart" style="font-size: 65px; color: rgb(185, 36, 36)"></i>
+						<span style="font-size: 17px; color: white; width: 40px; position:absolute; top:17px; left: 13px">추천</span>
+					</button> 
 					</div>	
 				</c:if>	
 					<div class="rn">
@@ -273,67 +274,36 @@
 				<c:if test="${typeParam != 'notice' and typeParam != 'qna'}">
 					<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
-							<td style="border-bottom: none; padding-bottom: 0" ><textarea name="" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
+							<td style="border-bottom: none; padding-bottom: 0" ><textarea name="comment_content" id="comment_content" cols="30" rows="10" placeholder="댓글을 입력해주세요." style="resize: none; overflow-y: auto;"></textarea></td>
 						</tr>
 						<tr>
-							<td><a id="comment" href="<c:url value="/jsp/community/exercise_detail.jsp"/>" type="button" class="btn btn-default comment" style="float: right">등록</a></td>
+							<td><a id="comment" type="button" class="btn btn-default comment" style="float: right">등록</a></td>
 						</tr>
 					</table>
-					<table class="table_qna comment" width="100%" cellpadding="0" cellspacing="0">
-						<tr style="border-top: 1px solid #6d686b">
-							<td>조성일</td>
-							<td style="text-align: right">2015.03.22 13:31</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none">가나다다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<span class="update-button">
-									<button type="button" class="btn btn-default">수정</button>
-									<button type="button" class="btn btn-default">삭제</button>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none"></td>
-						</tr>
-						<tr style="border-top: 1px solid #6d686b">
-							<td>조성일</td>
-							<td style="text-align: right">2015.03.22 13:31</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none">가나다다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아가나다라마바사아</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<span class="update-button">
-									<button type="button" class="btn btn-default">수정</button>
-									<button type="button" class="btn btn-default">삭제</button>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="border-bottom: none"></td>
-						</tr>
-					</table>
+					<div id="commentList">
+
+					</div>
 				</c:if>	
 			</div>
 		</div>
 	</div>
   <script type="text/javascript">
-	$(function(){
+ 	$(function(){
 		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
 		$("#rec_update").click(function(){
-			alert("추천")
 			$.ajax({
 				url: "recomUpdate.do",
                 type: "POST",
                 data: {
                     no: ${board.no},
-                    id: '${user.id}'
+                    id: 'ex'
                 },
-                success: function () {
+                success: function (result) {
+                	if(result == 0) {
+            			alert("추천!");
+                	} else {
+            			alert("추천 취소!");
+                	}
 			        recCount();
                 },
 			});
@@ -353,8 +323,151 @@
 			});
 	    };
 	    recCount();
-	});   
-  </script>
+	    getCommentList(${board.no});
+	
+		function getCommentList(no) {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if(xhr.status == 200) {
+						var board = JSON.parse(xhr.responseText);
+						var html = "<table class='table_qna comment' width='100%' cellpadding='0' cellspacing='0'>";
+						for(let c of board.commentList) {
+							html += "<tr style='border-top: 1px solid #6d686b'>";
+							html += "<td>" + c.writer + "</td>";
+							html += "<td style='text-align: right'>" + c.regDate + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td colspan='2' style='border-bottom: none'>" + c.content + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td colspan='2' id='b" + c.commentNo + "'>";
+							html += "<span class='update-button' style='margin:0 0; float:right'>";
+							html += "<button id='up" + c.commentNo + "' class='btn btn-default c_update' onclick='commentUpdateForm(" + c.commentNo + ",\"" + c.content + "\")'>수정</button>";
+							html += "<button id='del" + c.commentNo + "' class='btn btn-default c_delete' onclick='commentDelete(" + c.commentNo + "," + c.no + ")'>삭제</button>";
+							html += "</span>";
+							html += "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td colspan='2' style='border-bottom: none'>";
+							html += "</td>";
+							html += "</tr>";
+						};
+						html += "</table>";
+						$("#commentList").html(html); 
+						$("#comment_content").attr("placeholder", "댓글을 입력해주세요.").val("");
+					};
+				};
+			};
+			xhr.open("GET", "/gth/board/commentlist.do?no=" + no, true);
+			xhr.send();
+		};
+
+    }); /* 추천, 최초 댓글 리스트 */	
+    
+	function getCommentList(no) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if(xhr.status == 200) {
+					var board = JSON.parse(xhr.responseText);
+					var html = "<table class='table_qna comment' width='100%' cellpadding='0' cellspacing='0'>";
+					for(let c of board.commentList) {
+						html += "<tr style='border-top: 1px solid #6d686b'>";
+						html += "<td>" + c.writer + "</td>";
+						html += "<td style='text-align: right'>" + c.regDate + "</td>";
+						html += "</tr>";
+						html += "<tr>";
+						html += "<td colspan='2' style='border-bottom: none'>" + c.content + "</td>";
+						html += "</tr>";
+						html += "<tr>";
+						html += "<td colspan='2' id='b" + c.commentNo + "'>";
+						html += "<span class='update-button' style='margin:0 0; float:right'>";
+						html += "<button id='up" + c.commentNo + "' class='btn btn-default c_update' onclick='commentUpdateForm(" + c.commentNo + ",\"" + c.content + "\")'>수정</button>";
+						html += "<button id='del" + c.commentNo + "' class='btn btn-default c_delete' onclick='commentDelete(" + c.commentNo + "," + c.no + ")'>삭제</button>";
+						html += "</span>";
+						html += "</td>";
+						html += "</tr>";
+						html += "<tr>";
+						html += "<td colspan='2' style='border-bottom: none'>";
+						html += "</td>";
+						html += "</tr>";
+					};
+					html += "</table>";
+					$("#commentList").html(html); 
+					$("#comment_content").attr("placeholder", "댓글을 입력해주세요.").val("");
+				};
+			};
+		};
+		xhr.open("GET", "/gth/board/commentlist.do?no=" + no, true);
+		xhr.send();
+   	}; /* 리스트 */
+    	
+	$("#comment").click(function() {
+		var no = ${board.no};
+		var writer = 'writer';
+		var content = document.getElementById("comment_content").value;
+		$.ajax({
+			type: "POST",
+			url: "/gth/board/commentinsert.do",
+			data: {no: no, writer: writer, content: content},
+			success: function(data) {
+				getCommentList(no);
+			}
+		});
+	}); /* 등록 */
+    
+	function commentDelete(cno, no) {
+		$.ajax({
+			url: "/gth/board/commentdelete.do?cno=" + cno,
+			success: function(data) {
+				getCommentList(no);
+			}
+		});
+	};/* 삭제 */
+	
+	function commentUpdateForm(cno, content) {
+		var no = ${board.no};
+		$("#b" + cno).append(
+				$("<input type='text' id='input" + cno + "' class='input' value='" + content + "'/>"),
+				$("<button id='update" + cno + "' class='btn btn-default updatebnt' onclick='Commentupdate(" + cno + ", " + no + ", " + "\"input" + cno + "\")'>").html("수정"),
+				$("<button id='cancel" + cno + "' class='btn btn-default cancelbnt' onclick='Commentcancel()'>").html("취소")
+		)
+		$(".input").css("display", "none")
+		$(".updatebnt").css("display", "none")
+		$(".cancelbnt").css("display", "none") 
+		$("#input" + cno).css("display", "inline").focus()
+		$("#update" + cno).css("display", "inline")
+		$("#cancel" + cno).css("display", "inline")
+		
+		$(".c_update").css("display", "inline")
+		$(".c_delete").css("display", "inline")
+		$("#up" + cno).css("display", "none")
+		$("#del" + cno).css("display", "none")	
+	};/* 수정  폼 */
+	
+	function Commentupdate(cno, no, id) {
+		var content = document.querySelector("#" + id).value; 
+		
+		$.ajax({
+			type: "POST",
+			url: "/gth/board/commentupdate.do",
+			data: {cno: cno, content: content},
+			success: function(data) {
+				getCommentList(no)
+			}
+		});
+	};/* 수정  */
+	
+	function Commentcancel() {
+		$(".input").css("display", "none")
+		$(".updatebnt").css("display", "none")
+		$(".cancelbnt").css("display", "none")
+	
+		$(".c_update").css("display", "inline")
+		$(".c_delete").css("display", "inline")
+	};
+  	</script>
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/community/script.js"/>"></script>

@@ -27,6 +27,26 @@ public class ListExerciseBackBoardController extends HttpServlet {
 		
 		String search = request.getParameter("search");
 		String word = request.getParameter("word");
+		String arrays = null;
+		
+		try {
+			arrays = request.getParameter("arrays");
+			if(arrays == null) {
+				arrays = "reg_date";
+			}
+			if(arrays.equals("regDate")) {
+				arrays = "reg_date";
+			}
+			if(arrays.equals("viewCnt")) {
+				arrays = "view_cnt";
+			}
+			if(arrays.equals("recomCnt")) {
+				arrays = "recom_cnt";
+			}
+		} catch (Exception e) {
+			arrays = "reg_date";
+		}
+		
 		List<Board> list = null;
 		Board board = new Board();
 		
@@ -41,6 +61,7 @@ public class ListExerciseBackBoardController extends HttpServlet {
 		board.setStartRow(startRow);
 		board.setEndRow(endRow);
 		board.setCategory("등");
+		board.setArrays(arrays);
 		int count = 0;
 		board.setKeyword(word);
 		try {
@@ -90,6 +111,7 @@ public class ListExerciseBackBoardController extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("arrays", arrays);
 
 		try {
 			board.setKeyword(word);

@@ -27,6 +27,26 @@ public class ListExerciseBoardController extends HttpServlet {
 
 		String search = request.getParameter("search");
 		String word = request.getParameter("word");
+		String arrays = null;
+		
+		try {
+			arrays = request.getParameter("arrays");
+			if(arrays == null) {
+				arrays = "reg_date";
+			}
+			if(arrays.equals("regDate")) {
+				arrays = "reg_date";
+			}
+			if(arrays.equals("viewCnt")) {
+				arrays = "view_cnt";
+			}
+			if(arrays.equals("recomCnt")) {
+				arrays = "recom_cnt";
+			}
+		} catch (Exception e) {
+			arrays = "reg_date";
+		}
+		
 		List<Board> list = null;
 		Board board = new Board();
 		
@@ -41,6 +61,7 @@ public class ListExerciseBoardController extends HttpServlet {
 		board.setStartRow(startRow);
 		board.setEndRow(endRow);
 		board.setType("운동방법");
+		board.setArrays(arrays);
 		int count = 0;
 		board.setKeyword(word);
 		try {
@@ -90,6 +111,7 @@ public class ListExerciseBoardController extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("arrays", arrays);
 		
 		try {
 			board.setKeyword(word);
@@ -115,7 +137,7 @@ public class ListExerciseBoardController extends HttpServlet {
 			request.setAttribute("search", search);
 			request.setAttribute("word", word);
 		} 
-
+		
 		HttpSession session = (HttpSession) request.getAttribute("user");
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/exercise_list.jsp");
 		rd.forward(request, response);
