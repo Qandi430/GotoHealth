@@ -168,8 +168,10 @@ Email : ${t.email} <br>
 								<div class="con2">약력 : ${t.history}</div>
 
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
 								</c:forEach>
+								<div class="con4">
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/4pC1T5QBU8c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -447,13 +449,9 @@ Email : ${t.email} <br>
 
 				// 정상적으로 검색이 완료됐으면
 				// 검색 목록과 마커를 표출합니다
-				/* 
-					if(data[0].category_name.indexOf('헬스클럽')==-1){
-					return false					
-				} else { */
-				displayPlaces(data);
-				/* } */
 				
+					/* console.dir(data[0].category_name.indexOf('헬스클럽')!=-1){} */
+				displayPlaces(data);
 				
 			
 					
