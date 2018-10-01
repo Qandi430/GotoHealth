@@ -22,11 +22,9 @@
 					<li><a href="<c:url value="galleryList.do"/>">갤러리</a></li>
 					<li><a href="<c:url value="qnaList.do"/>">질문과 답변</a></li>
 				</ul>
-				<select name="arrays" style="float: right; width: 65px; font-size: 15px; height: 30px; margin: 10px 0;">
-					<option value="new">최신순</option>
-					<option value="lookup">조회순</option>
-					<option value="recommendation">추천순</option>
-				</select>
+				<div>
+				　
+				</div>
 				<table class="table_notice" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<th>번호</th>
@@ -46,20 +44,47 @@
 						</tr>
 					</c:if>
 				</c:forEach>	
+				<c:if test="${empty list}">
+					<tr class="title">
+						<td colspan="5">등록된 게시물이 없습니다.</td>
+					</tr>
+				</c:if>	
 				</table>
-				<form action="/gth/board/writeForm.do" method="post">
+				<form action="uploadForm.do" method="post">
 					<input type="hidden" name="typeParam" value="notice">
 					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
 				</form>
 				<div class="search">
 					<form action="noticeList.do" method="post">
-						<select class="searchselect" name="search">
-							<option value=''>구분</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-							<option value="titlecontent">제목+내용</option>
-						</select>
-						<input class="searchinput" type="text" name="word" placeholder="검색어를 입력하세요.">
+						<c:if test="${search == null}">
+							<select class="searchselect" name="search">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="titlecontent">제목+내용</option>
+							</select>
+						</c:if>
+						<c:if test="${search == 'title'}">
+							<select class="searchselect" name="search">
+								<option value="title" selected>제목</option>
+								<option value="content">내용</option>
+								<option value="titlecontent">제목+내용</option>
+							</select>
+						</c:if>
+						<c:if test="${search == 'content'}">
+							<select class="searchselect" name="search">
+								<option value="title">제목</option>
+								<option value="content" selected>내용</option>
+								<option value="titlecontent">제목+내용</option>
+							</select>
+						</c:if>
+						<c:if test="${search == 'titlecontent'}">
+							<select class="searchselect" name="search">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="titlecontent" selected>제목+내용</option>
+							</select>
+						</c:if>
+						<input class="searchinput" type="text" name="word" placeholder="검색어를 입력하세요." value="${word}">
 						<button id="search" class="btn btn-default" >검색</button>
 					</form>	
 				</div>			

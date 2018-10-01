@@ -17,6 +17,10 @@
 		<result column="parent_no" property="parentNo" />
 		<result column="commentCnt" property="commentCnt" />
 		<result column="rnum" property="rowNum" />
+		<result column="recom_cnt" property="recomCnt" />		
+		<collection property="fileList" 
+					column="no"
+		            select="selectFileList" />
 	</resultMap>
 	
 	<!-- tb_commentd -->
@@ -44,8 +48,8 @@
 		<result column="no" property="no" />
 	</resultMap>
 	 
-	<!-- 게시물 전체 목록 가져오기 -->
-	<select id="selectBoardAllList" parameterType="Board" resultMap="boardMap">
+	<!-- 게시물 전체 목록 가져오기(정렬 기능 없는 게시판) -->
+	<select id="selectBoardAllNoArraysList" parameterType="Board" resultMap="boardMap">
 	    select *
 	    from(
 	        select rownum rnum, a.*
@@ -56,15 +60,27 @@
 	    where rnum between #{startRow} and #{endRow}
 	</select>
 	
+	<!-- 게시물 전체 목록 가져오기(정렬 기능 있는 게시판) -->
+	<select id="selectBoardAllList" parameterType="Board" resultMap="boardMap">
+	    select *
+	    from(
+	        select rownum rnum, a.*
+	          from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
+	                  from tb_board b
+	                 where type = #{type}
+	         order by ${arrays} desc) a)
+	    where rnum between #{startRow} and #{endRow}
+	</select>
+	
 	<!-- 게시물 전체 목록 가져오기(category) -->
 	<select id="selectBoardAllList2" parameterType="Board" resultMap="boardMap">
 	    select *
 	    from(
 	        select rownum rnum, a.*
-	          from(select b.*
+	          from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
 	                  from tb_board b
 	                 where category = #{category}
-	         order by reg_date desc) a)
+	         order by ${arrays} desc) a)
 	    where rnum between #{startRow} and #{endRow}
 	</select>
 
@@ -133,8 +149,8 @@
 		 where no = #{no}
 	</select>
 	
-	<!-- 제목 검색(type) 기능 -->
-	<select id="searchTitle" parameterType="Board" resultMap="boardMap">
+	<!-- 제목 검색(type) 정렬 없는 기능 -->
+	<select id="noArraysSearchTitle" parameterType="Board" resultMap="boardMap">
 	    select *
 	     from(
 	         select rownum rnum, a.*
@@ -146,8 +162,8 @@
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	
-	<!-- 내용 검색(type) 기능 -->
-	<select id="searchContent" parameterType="Board" resultMap="boardMap">
+	<!-- 내용 검색(type) 정렬 없는 기능 -->
+	<select id="noArraysSearchContent" parameterType="Board" resultMap="boardMap">
  	    select *
 	     from(
 	         select rownum rnum, a.*
@@ -159,8 +175,8 @@
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	
-	<!-- 제목+내용 검색(type) 기능 -->
-	<select id="searchTitleContent" parameterType="Board" resultMap="boardMap">
+	<!-- 제목+내용 검색(type) 정렬 없는 기능 -->
+	<select id="noArraysSearchTitleContent" parameterType="Board" resultMap="boardMap">
   	    select *
 	     from(
 	         select rownum rnum, a.*
@@ -174,16 +190,58 @@
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	
+	
+	<!-- 제목 검색(type) 정렬 있는 기능 -->
+	<select id="searchTitle" parameterType="Board" resultMap="boardMap">
+	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
+	                   from tb_board b
+	                  where type = #{type}
+	                    and title like '%' ||  #{keyword} || '%'
+	          order by ${arrays} desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 내용 검색(type) 정렬 있는 기능 -->
+	<select id="searchContent" parameterType="Board" resultMap="boardMap">
+ 	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
+	                   from tb_board b
+	                  where type = #{type}
+	                    and content like '%' ||  #{keyword} || '%'
+	          order by ${arrays} desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 제목+내용 검색(type) 정렬 있는 기능 -->
+	<select id="searchTitleContent" parameterType="Board" resultMap="boardMap">
+  	    select *
+	     from(
+	         select rownum rnum, a.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
+	                   from tb_board b
+	                  where type = #{type}
+	                    and title like '%' ||  #{keyword} || '%'
+	                     or type = #{type}
+					    and content like '%' ||  #{keyword} || '%'
+	          order by ${arrays} desc) a)
+	     where rnum between #{startRow} and #{endRow}
+	</select>
+	
 	<!-- 제목 검색(category) 기능 -->
 	<select id="searchCategoryTitle" parameterType="Board" resultMap="boardMap">
 	    select *
 	     from(
 	         select rownum rnum, a.*
-	           from(select b.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
 	                   from tb_board b
 	                  where category = #{category}
 	                    and title like '%' ||  #{keyword} || '%'
-	          order by reg_date desc) a)
+	          order by ${arrays} desc) a)
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -192,11 +250,11 @@
  	    select *
 	     from(
 	         select rownum rnum, a.*
-	           from(select b.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
 	                   from tb_board b
 	                  where category = #{category}
 	                    and content like '%' ||  #{keyword} || '%'
-	          order by reg_date desc) a)
+	          order by ${arrays} desc) a)
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -205,13 +263,13 @@
   	    select *
 	     from(
 	         select rownum rnum, a.*
-	           from(select b.*
+	           from(select b.*, (select count(*) from tb_comment where no = b.no ) as commentCnt
 	                   from tb_board b
 	                  where category = #{category}
 	                    and title like '%' ||  #{keyword} || '%'
 	                     or category = #{category}
 					    and content like '%' ||  #{keyword} || '%'
-	          order by reg_date desc) a)
+	          order by ${arrays} desc) a)
 	     where rnum between #{startRow} and #{endRow}
 	</select>
 	 
@@ -232,7 +290,8 @@
         select *
         from(
         select rownum rnum, a.*
-          from( select level, b.*
+          from( select level, b.no, b.type, b.category, LPAD('　┖ ', 4*(level-1), '　') || b.title title, b.writer, 
+                              b.content, b.reg_date, b.view_cnt, b.ref, b.parent_no
 				  from tb_board b
 		         where type = '질문과 답변'
 				 start with parent_no = 0
@@ -258,7 +317,8 @@
        select *
         from(
         select rownum rnum, a.*
-          from( select level, b.*
+          from( select level, b.no, b.type, b.category, LPAD('　┖ ', 4*(level-1), '　') || b.title title, b.writer, 
+                              b.content, b.reg_date, b.view_cnt, b.ref, b.parent_no
 				  from tb_board b
 		         where type = '질문과 답변'
 	                    and title like '%' ||  #{keyword} || '%'
@@ -273,7 +333,8 @@
        select *
         from(
         select rownum rnum, a.*
-          from( select level, b.*
+          from( select level, b.no, b.type, b.category, LPAD('　┖ ', 4*(level-1), '　') || b.title title, b.writer, 
+                              b.content, b.reg_date, b.view_cnt, b.ref, b.parent_no
 				  from tb_board b
 		         where type = '질문과 답변'
                    and content like '%' ||  #{keyword} || '%'
@@ -288,7 +349,8 @@
        select *
         from(
         select rownum rnum, a.*
-          from( select level, b.*
+          from( select level, b.no, b.type, b.category, LPAD('　┖ ', 4*(level-1), '　') || b.title title, b.writer, 
+                              b.content, b.reg_date, b.view_cnt, b.ref, b.parent_no
 				  from tb_board b
 		         where type = '질문과 답변'
                    and title like '%' ||  #{keyword} || '%'
@@ -345,14 +407,87 @@
 	<insert id="recUpdate" parameterType="Recom">
 		insert into tb_recom(no, id) values(#{no}, #{id})
 	</insert>
+	<update id="updateRecom" parameterType="int">
+		update tb_board
+		   set recom_cnt = recom_cnt + 1
+		 where no = #{no}  
+	</update>
 	
 	<!-- 게시글 추천 취소 -->
 	<delete id="recDelete" parameterType="Recom">
 		delete from tb_recom where no = #{no} and id = #{id}
 	</delete>
+	<update id="cancelRecom" parameterType="int">
+		update tb_board
+		   set recom_cnt = recom_cnt - 1
+		 where no = #{no}  
+	</update>
 	
 	<!-- 게시글 추천수 -->
 	<select id="recCount" parameterType="int" resultType="int">
 		select count(*) from tb_recom where no = #{no}
 	</select>
+	
+	<!-- 댓글 목록 -->
+	<select id="selectComment" parameterType="int" resultMap="commentMap">
+		select *
+		  from tb_comment
+		 where no = #{no}
+		 order by comment_no 
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertComment" parameterType="Comment">
+		insert into tb_comment(
+			comment_no, no, writer, content
+		) values (
+			s_comment_no.nextval, #{no}, #{writer}, #{content}
+		)	
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="Comment">
+		update tb_comment
+		   set content = #{content}
+		 where comment_no = #{commentNo}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="int">
+		delete tb_comment
+		 where comment_no = #{commentNo}
+	</delete>
+		
+	<!-- 게시글 댓글 전체 삭제 -->
+	<delete id="deleteAllComment" parameterType="int">
+		delete tb_comment
+		 where no = #{no}
+	</delete>		
+		
+	<!-- 파일 목록 가져오기 -->
+	<select id="selectFileList" parameterType="int" resultMap="boardFileMap">
+		select *
+		  from tb_board_file
+		 where no = #{no}
+	</select>	
+		
+	<!-- 파일 등록하기 -->
+	<insert id="insertFile" parameterType="BoardFile">
+		insert into tb_board_file (
+			file_no, 
+			no,
+			path
+		) values (
+			s_board_file_no.nextval,
+			#{no},
+			#{path}
+		)		
+	</insert>	
+	
+	<!-- 파일 삭제하기 -->
+	<delete id="deleteFile" parameterType="int">
+		delete tb_board_file
+		 where no = #{no}
+	</delete>
+	
 </mapper>

@@ -1,12 +1,15 @@
 package kr.co.mlec.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import kr.co.mlec.common.db.MyAppSqlConfig;
 import kr.co.mlec.repository.domain.Recom;
@@ -32,14 +35,16 @@ public class RecomUpdateController extends HttpServlet {
 		
 		if(result == 0) { // 추천하지 않았다면 추천 추가
 			mapper.recUpdate(recom);
+			mapper.updateRecom(no);
 		} else { // 추천을 하였다면 추천 삭제
 			mapper.recDelete(recom);
+			mapper.cancelRecom(no);
 		}
  		
-//		response.setContentType("application/json; charset=utf-8");
-//		PrintWriter out = response.getWriter();
-//		out.println(new Gson().toJson(like));
-//		out.close();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(new Gson().toJson(result));
+		out.close();
 	} // service
 	
 } // end class

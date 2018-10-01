@@ -24,14 +24,31 @@ import kr.co.mlec.repository.mapper.BoardMapper;
 public class WriteBoardController extends HttpServlet {
 
 	public void service(HttpServletRequest request, HttpServletResponse response) 
-			throws IOException, ServletException {
+			throws IOException, ServletException {		
 		request.setCharacterEncoding("utf-8");
-
-		String type = request.getParameter("writeType");
-		String category = request.getParameter("writeCategory");
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String content = request.getParameter("content");
+		String uploadPath = "C:/app/upload";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+		String datePath = sdf.format(new Date());
+		
+		File file = new File(uploadPath + datePath); 
+		if(file.exists() == false) {
+			file.mkdirs();
+		} // if
+			
+		MultipartRequest mRequest = new MultipartRequest(
+				request, 
+				uploadPath + datePath, // 사용자가 전송한 파일이 저장될 폴더 지정
+				1024 * 1024 * 100, // 업로드될 파일의 최대 크기 지정(여러개면 통합한 크기)
+				"utf-8", // 파라미터 인코딩 지정
+				new MlecFileRenamePolicy() // 서버에 실제 저장되는 파일의 이름 규칙 지정
+		);
+		
+		String type = mRequest.getParameter("writeType");
+		String category = mRequest.getParameter("writeCategory");
+		String title = mRequest.getParameter("title");
+		String writer = mRequest.getParameter("writer");
+		String content = mRequest.getParameter("content");
 		
 		switch (type) {
 			case "notice":
@@ -98,6 +115,13 @@ public class WriteBoardController extends HttpServlet {
 			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
 		
 		mapper.insertBoard(board);
+
+		// 파일 DB 저장
+		int no = board.getNo();
+		BoardFile boardFile = new BoardFile();
+		boardFile.setNo(no);
+		boardFile.setPath(mRequest.getParameter("photo"));
+		mapper.insertFile(boardFile);
 		
 		switch (type) {
 			case "notice":

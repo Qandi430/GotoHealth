@@ -94,19 +94,19 @@ public class ListNoticeBoardController extends HttpServlet {
 			board.setKeyword(word);
 			
 			if(search.equals("title")) {
-				list = mapper.searchTitle(board);
+				list = mapper.noArraysSearchTitle(board);
 			}
 			if(search.equals("content")) {
-				list = mapper.searchContent(board);
+				list = mapper.noArraysSearchContent(board);
 			}
 			if(search.equals("titlecontent")) {
-				list = mapper.searchTitleContent(board);
+				list = mapper.noArraysSearchTitleContent(board);
 			}
 			if(search == "") {
-				list = mapper.selectBoardAllList(board);
+				list = mapper.selectBoardAllNoArraysList(board);
 			}
 		} catch (Exception e) {
-			list = mapper.selectBoardAllList(board);
+			list = mapper.selectBoardAllNoArraysList(board);
 		}
 
 		request.setAttribute("list", list);

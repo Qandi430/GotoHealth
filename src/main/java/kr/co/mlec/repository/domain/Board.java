@@ -17,12 +17,36 @@ public class Board {
 	private int parentNo;
 	private int commentCnt;
 	private int rowNum;
+	private BoardFile boardFile;
 	private List<BoardFile> fileList;
 	private List<Comment> commentList;
 	private int startRow;
 	private int endRow;
 	private String keyword;
+	private int recomCnt;
+	private String arrays;
 	
+	
+	public BoardFile getBoardFile() {
+		return boardFile;
+	}
+	public void setBoardFile(BoardFile boardFile) {
+		this.boardFile = boardFile;
+	}
+	
+	public String getArrays() {
+		return arrays;
+	}
+	public void setArrays(String arrays) {
+		this.arrays = arrays;
+	}
+	
+	public int getRecomCnt() {
+		return recomCnt;
+	}
+	public void setRecomCnt(int recomCnt) {
+		this.recomCnt = recomCnt;
+	}
 	
 	public String getKeyword() {
 		return keyword;

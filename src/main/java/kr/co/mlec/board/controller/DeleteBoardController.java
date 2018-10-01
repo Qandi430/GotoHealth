@@ -27,19 +27,21 @@ public class DeleteBoardController extends HttpServlet {
 		
 		BoardMapper mapper = 
 			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
-
-//		mapper.deleteBoardComment(no);
+		
+/*		BoardFile boardFile = mapper.selectFileList(no);
+		if(boardFile != null) {
+			File f = new File(boardFile.getPath());
+			f.delete();
+		}*/
+		
+		mapper.deleteFile(no);
+		mapper.deleteAllComment(no);
+		
 		if(typeParam.equals("qna")) {
 			mapper.deleteQnaBoard(no);
 		} else {
 			mapper.deleteBoard(no);
 		}
-//		BoardFile boardFile = mapper.selectFileList(no);
-		
-//		if(boardFile != null) {
-//			File f = new File("c:/app/upload" + boardFile.getPath() + "/" + boardFile.getFileDname());
-//			f.delete();
-//		}
 		
 		switch (typeParam) {
 			case "notice":

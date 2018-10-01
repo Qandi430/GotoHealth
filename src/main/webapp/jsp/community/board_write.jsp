@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GoToHealth - Exercise</title>
 <c:import url="/common/includeCss.jsp"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/common.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/style.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/common.css"/>"/> 
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/community/style.css"/>"/> 
 <!-- summernote -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -195,7 +195,7 @@
 				<div class="box_notice">
 					<div class="inner">※  &nbsp;모든 내역은 필수입니다.</div>
 				</div>
-				<form action="write.do" method="post" class="write">
+				<form action="/gth/board/write.do" enctype="multipart/form-data" method="post" class="write">
 					<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th>제목 <span>*</span></th>
@@ -287,6 +287,7 @@
 							<td><textarea name="content" id="summernote" style="resize: none; overflow-y: auto;"></textarea></td>
 						</tr>
 					</table>
+					<input id="photo" name="photo" type="hidden">
 					<c:if test="${typeParam == 'notice'}">
 						<input type="hidden" name="writeType" value="notice">
 						<input type="hidden" name="writeCategory" value="notice">
@@ -378,40 +379,8 @@
 		<!-- //container -->
 	</div>
 	<c:import url="/common/footer.jsp"/>
-	<script src="<c:url value="/js/community/script.js"/>"></script>
-<script type="text/javascript">
-/* 	$('#summernote').summernote({
-	    height: ($(window).height() - 300),
-	    callbacks: {
-	        onImageUpload: function(image) {
-	        	console.log("up!")
-	            uploadImage(image[0]);
-	        }
-	    }
-	});
-	
-	function uploadImage(image) {
-	    var data = new FormData();
-	    data.append("image", image);
-	    $.ajax({
-	        url: '/08_servletjsp/jstlboard/jstlwriteForm.do',
-	        cache: false,
-	        contentType: false,
-	        processData: false,
-	        data: data,
-	        type: "post",
-        	enctype: 'multipart/form-data',
-	        success: function(url) {
-	        	console.log(url)
-	            var image = $('<img>').attr('src', url);
-	            $('#summernote').summernote("insertNode", image[0]);
-	        },
-	        error: function(data) {
-	            console.log(data);
-	        }
-	    });
-	} */
-	
+	<script src="<c:url value="/js/community/script.js"/>"></script> 
+	<script type="text/javascript">
 	$(function(){
 		$('#summernote').summernote({
 			height: 600,
@@ -434,16 +403,17 @@
       	$.ajax({
         	data: form_data,
         	type: "POST",
-        	url: '/08_servletjsp/jstlboard/jstlwriteForm.do',
+        	url: '/gth/board/writeForm.do',
         	cache: false,
         	contentType: false,
         	enctype: 'multipart/form-data',
         	processData: false,
         	success: function(img_name) {
-          		$(el).summernote('editor.insertImage', img_name);
+        		$("#photo").val(img_name);
+        		$(el).summernote('editor.insertImage', img_name);
         	}
       	});
-    }
+    } 
 </script>	
 </body>
 </html>
