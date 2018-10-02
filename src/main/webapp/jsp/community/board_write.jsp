@@ -409,6 +409,7 @@
         	enctype: 'multipart/form-data',
         	processData: false,
         	success: function(img_name) {
+        		console.log(img_name)
         		$("#photo").val(img_name);
         		$(el).summernote('editor.insertImage', img_name);
         	}

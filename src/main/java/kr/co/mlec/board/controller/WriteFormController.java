@@ -66,7 +66,7 @@ public class WriteFormController extends HttpServlet {
 				HttpSession session = (HttpSession) request.getAttribute("user");
 				response.setContentType("application/json; charset=utf-8");
 				PrintWriter out = response.getWriter();
-				out.println(new Gson().toJson("http://localhost:8000/local_img" + datePath + "/" + systemName));
+				out.println(new Gson().toJson("http://192.168.0.67:8000/local_img" + datePath + "/" + systemName));
 				out.close();
 			} // if
 		} // while
