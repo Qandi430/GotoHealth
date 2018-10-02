@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -85,42 +86,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>10</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								
+								<c:forEach var="board" items="${list}" >
+									<tr class="title">
+										<td>${board.no}</td>
+										<td><a href="detail.do?no=${board.no}&typeParam=notice" style="color: black; text-decoration: none;">${board.title}</a></td>
+										<td>${board.writer}</td>
+										<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
+										<td>${board.viewCnt}
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>	
@@ -181,11 +155,6 @@
 	</div>
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
-	<c:if test="${alert eq 'y' }">
-		<script>
-			alert("등록된 회원정보가 존재하지 않습니다");s
-		</script>
-	</c:if>
 	
 	<script>
 		var msg;
@@ -198,8 +167,11 @@
 		        msg = "승인후 회원가입이 완료됩니다.";
 		        alert(msg);
 		    </c:when>
+		    <c:when test="${alert eq 'f'}">
+		        msg = "회원가입에 실패 하였습니다.";
+		        alert(msg);
+		    </c:when>
 		</c:choose>
-		
 	</script>
 	<script>
 		

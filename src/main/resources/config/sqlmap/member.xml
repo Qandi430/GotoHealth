@@ -65,4 +65,16 @@
     	 from tb_trainer 
     	where id = #{id} 
     </select>
+    
+    <!-- 트레이너 수정 -->
+    <update id="updateTrainer" parameterType="Trainer">
+    	update tb_trainer 
+    	set info = #{info},
+    		video = #{video},
+    		gym_name = #{gymName},
+    		height = #{height},
+    		weight = #{weight},
+    		history = #{history} 
+    	where id = #{id} 
+    </update>
 </mapper>

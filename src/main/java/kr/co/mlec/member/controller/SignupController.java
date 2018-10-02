@@ -66,10 +66,10 @@ public class SignupController extends HttpServlet{
 				System.out.println(trainer);
 				mapper.insertTrainer(trainer);
 			};
-			response.sendRedirect(request.getContextPath()+"/main.do");
+			response.sendRedirect(request.getContextPath()+"/main.do?alert=s");
 			
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/main.do?alert=s");
+			RequestDispatcher rd = request.getRequestDispatcher("/main.do?alert=f");
 			rd.forward(request, response);
 		}
 		

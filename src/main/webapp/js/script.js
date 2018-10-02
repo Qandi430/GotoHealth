@@ -40,4 +40,20 @@ $("#login_btn").click(function(){
 		form.submit();	
 	}
 })
+$("#login.modal").keydown(function(key){
+	if (key.keyCode == 13) {
+		var form = $("#loginForm");
+		var id = form.find("#id");
+		var pass = form.find("#pass");
+		if(id==""){
+			alert("ID를 입력해 주세요")
+			id.focus();
+		}else if(pass==""){
+			alert("PASSWORD를 입력해주세요")
+			pass.focus();
+		}else{
+			form.submit();	
+		}
+	}
+})
 

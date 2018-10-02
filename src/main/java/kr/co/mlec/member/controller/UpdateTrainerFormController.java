@@ -1,4 +1,4 @@
-package kr.co.mlec.message.controller;
+package kr.co.mlec.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,26 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.mlec.common.db.MyAppSqlConfig;
-import kr.co.mlec.repository.domain.Message;
-import kr.co.mlec.repository.mapper.MessageMapper;
+import kr.co.mlec.repository.domain.Trainer;
+import kr.co.mlec.repository.mapper.MemberMapper;
 
-@WebServlet("/detailMessage.do")
-public class DetailMessageController extends HttpServlet{
+@WebServlet("/updateTrainerForm.do")
+public class UpdateTrainerFormController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		MessageMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(MessageMapper.class);
-	
+		MemberMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(MemberMapper.class);
+		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("utf-8");
-		int no = Integer.parseInt(request.getParameter("no"));
-		Message message = mapper.detailMessage(no);
-		mapper.changeStatus(no);
+		String id = request.getParameter("id");
+		Trainer trainer = mapper.selectTrainerById(id);
+		
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		out.print(new Gson().toJson(message));
+		out.print(new Gson().toJson(trainer));
 		out.close();
-		
-				
 	}
 }

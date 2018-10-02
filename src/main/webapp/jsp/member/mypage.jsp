@@ -123,36 +123,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                                 <div class="chk">확인</div>
                             </div>
                             <ul class="contentsBody cf">
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
+                                
                                 
                             </ul>
                         </div>
@@ -164,55 +135,65 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                                 <div class="chk">확인</div>
                             </div>
                             <ul class="contentsBody cf">
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
-                                <li>
-                                    <div class="name">관리자</div>
-                                    <div class="title"><a href="#"  data-toggle="modal" data-target="#myModal">제목부분</a></div>
-                                    <div class="date">2018/09.14</div>
-                                    <div class="chk">읽음</div>
-                                </li>
                                 
                             </ul>
                         </div>
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                            </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                            </div>
+                        <div class="modal fade" id="reciverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	                        <div class="modal-dialog">
+	                            <div class="modal-content">
+	                            <div class="modal-header">
+	                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	                            </div>
+	                            <div class="modal-body">
+	                                <div class="info">
+                                        보낸사람 <span class="sender"></span> | 날짜 <span class="date"></span>
+                                    </div>
+                                    <div class="content"></div>
+                                    <div class="resend">
+                                    	<h5>답장</h5>
+                                        <form action="<c:url value="/resendMseeage.do"/>" method="post" id="resendForm" name="resendForm">
+                                            <div class="inputWrap">
+                                                <label for="message_title">제목</label>
+                                                <input type="text" name="message_title" id="message_title">
+                                            </div>
+                                            <div class="inputWrap">
+                                                <label for="message_content">내용</label>
+                                                <textarea name="message_content" id="message_content" cols="30" rows="5"></textarea>
+                                            </div>
+                                            <input type="hidden" name="message_reciver" id="message_reciver">
+                                            <input type="hidden" name="message_sender" id="message_sender">
+                                        </form>
+                                    </div>
+	                            </div>
+	                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="resend_btn">보내기</button>
+                                    <button type="button" class="btn btn-primary" id="del_btn">삭제</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	                            </div>
+	                            </div>
+	                        </div>
                         </div>
+                        <div class="modal fade" id="senderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	                        <div class="modal-dialog">
+	                            <div class="modal-content">
+	                            <div class="modal-header">
+	                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	                            </div>
+	                            <div class="modal-body">
+                                    <div class="info">
+                         		               받는사람 <span class="sender"></span> | 날짜 <span class="date"></span>
+                                    </div>
+                                    <div class="content"></div>
+                                    
+	                            </div>
+	                            <div class="modal-footer">
+	                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                                <button type="button" class="btn btn-primary">Save changes</button>
+	                            </div>
+	                            </div>
+	                        </div>
                         </div>
                     </div>
                 </div>
@@ -336,30 +317,45 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 <div role="tabpanel" class="tab-pane" id="trainerInfo">
                         <h5>트레이너 정보</h5>
                         <div class="modifyWrap">
-                            <form action="">
+                            <form action="<c:url value="/updateTrainer.do"/>" method="POST" id="updateTrainer" name="updagteTrainer">
                                 <div class="inputWrap">
-                                        <label for="member_id">ID</label>
-                                    <input type="text" name="member_id" id="member_id" value="아이디" readonly value="${user.id}">
+                                    <label for="member_id">ID</label>
+                                    <input type="text" name="member_id" id="member_id" value="${user.id}" readonly value="${user.id}">
                                     <span class="barColor"></span>
                                 </div>
                                 <div class="inputWrap">
-                                    <label for="member_pw">password</label>
-                                    <input type="password" name="member_pw" id="member_pw"  placeholder="비밀번호를 입력해주세요">
+                                    <label for="trainer_info">INFO</label>
+                                    <textarea name="trainer_info" id="trainer_info" cols="30" rows="10"></textarea>                                   
                                     <span class="barColor"></span>
                                 </div>
                                 <div class="inputWrap">
-                                        <label for="member_pw">password Confirm</label>
-                                        <input type="password" name="confirm_pw" id="confirm_pw"  placeholder="비밀번호를 다시 입력해주세요">
+                                        <label for="trainer_video">VIDEO</label>
+                                        <input type="text" name="trainer_video" id="trainer_video"  placeholder="유튜브 주소를 입력해 주세요">
                                         <span class="barColor"></span>
                                     </div>
                                 <div class="inputWrap">
-                                    <label for="member_pw">E-mail</label>
-                                    <input type="email" name="member_mail" id="member_mail"  placeholder="이메일을 입력해주세요" value="${user.email}">
+                                    <label for="trainer_gymName">Gym name</label>
+                                    <input type="text" name="trainer_gymName" id="trainer_gymName"  placeholder="근무하는 체육관 이름을 입력해주세요">
+                                    <span class="barColor"></span>
+                                </div>
+                                <div class="inputWrap inline">
+                                    <div class="inlineBox">
+                                        <label for="trainer_height">Height</label>
+                                        <input type="text" name="trainer_height" id="trainer_height" placeholder="키를 입력해주세요" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+                                    </div>
+                                    <div class="inlineBox">
+                                        <label for="trainer_weight">Weight</label>
+                                        <input type="text" name="trainer_weight" id="trainer_weight" placeholder="체중을 입력해주세요" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">   
+                                    </div>
+                                    <span class="barColor"></span>
+                                </div>
+                                <div class="inputWrap">
+                                    <label for="trainer_history">History</label>
+                                    <textarea name="trainer_history" id="trainer_history" cols="30" rows="10"></textarea>                                   
                                     <span class="barColor"></span>
                                 </div>
                                 <div class="inputWrap">
                                     <a href="#" id="submit">수정</a>
-
                                 </div>
                             </form>
                         </div>
@@ -373,22 +369,206 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/member/script.js"/>"></script>
 	<script>
+		$(function(){
+			$.ajax({
+				type : "GET",
+				url : "/gth/reciverMessageList.do",
+				data : "id=${user.id}",
+				success : function(data){
+					var html ="";
+					var chk;
+					for(var b of data){
+						var date = new Date(b.regDate)
+						var year = date.getFullYear();
+						var month = date.getMonth()+1;
+						var day = date.getDate();
+						
+						if(month < 10){
+							month = "0"+month
+						}
+						if(day < 10){
+							day = "0"+day
+						}
+						if(b.chkStatus=="Y"){
+							chk ="읽음";
+						}else{
+							chk ="안읽음"
+						}
+
+						html +="<li>"
+						html += "<div class='name'>"+b.sender+"</div>"
+						html += "<div class='title'><a href='#' data-href='"+b.no+"' data-toggle='modal' data-target='#reciverModal'>"+b.title+"</a></div>"
+						html += "<div class='date'>"+year+"."+month+"."+day+"</div>"
+						html += "<div class='chk'>"+chk+"</div>"
+						html +="</li>"
+					}
+					$(".reciveMessage > .contentsBody").html(html);	
+					$(".reciveMessage > .contentsBody a").click(function(){
+						var no = $(this).data("href")
+						reciveDetail(no)
+					})
+				}
+			})
+			$.ajax({
+				type : "GET",
+				url : "/gth/senderMessageList.do",
+				data : "id=${user.id}",
+				success : function(data){
+					var html ="";
+					var chk;
+					for(var b of data){
+						var date = new Date(b.regDate)
+						var year = date.getFullYear();
+						var month = date.getMonth()+1;
+						var day = date.getDate();
+						
+						if(month < 10){
+							month = "0"+month
+						}
+						if(day < 10){
+							day = "0"+day
+						}
+						if(b.chkStatus=="Y"){
+							chk ="읽음";
+						}else{
+							chk ="안읽음"
+						}
+
+						html +="<li>"
+						html += "<div class='name'>"+b.reciver+"</div>"
+						html += "<div class='title'><a href='#' data-href='"+b.no+"' data-toggle='modal' data-target='#senderModal'>"+b.title+"</a></div>"
+						html += "<div class='date'>"+year+"."+month+"."+day+"</div>"
+						html += "<div class='chk'>"+chk+"</div>"
+						html +="</li>"
+					}
+					$(".sendMessage > .contentsBody").html(html);	
+					$(".sendMessage > .contentsBody a").click(function(){
+						var no = $(this).data("href")
+						sendDetail(no)
+					})
+				}
+			})
+		}) //로딩시 받은메세지 로드
+		function reciveDetail(no){
+			$.ajax({
+				type : "GET",
+				url : "/gth/detailMessage.do",
+				data : "no="+no,
+				success : function(data){
+					var date = new Date(data.regDate)
+					var year = date.getFullYear();
+					var month = date.getMonth()+1;
+					var day = date.getDate();
+					
+					if(month < 10){
+						month = "0"+month
+					}
+					if(day < 10){
+						day = "0"+day
+					}
+					$("#reciverModal .modal-title").html(data.title)
+					$("#reciverModal .modal-body .content").html(data.content)
+					$("#reciverModal .modal-body .sender").html(data.sender)
+					$("#reciverModal .modal-body .date").html(year+"."+month+"."+day)
+					$("#reciverModal .modal-body .resend #message_title").val("re : "+data.title)
+					$("#reciverModal .modal-body .resend #message_reciver").val(data.sender)
+					$("#reciverModal .modal-body .resend #message_sender").val(data.reciver)
+				}
+			})
+		}
+		
+		function sendDetail(no){
+			$.ajax({
+				type : "GET",
+				url : "/gth/detailMessage.do",
+				data : "no="+no,
+				success : function(data){
+					var date = new Date(data.regDate)
+					var year = date.getFullYear();
+					var month = date.getMonth()+1;
+					var day = date.getDate();
+					
+					if(month < 10){
+						month = "0"+month
+					}
+					if(day < 10){
+						day = "0"+day
+					}
+					$("#senderModal .modal-title").html(data.title)
+					$("#senderModal .modal-body .content").html(data.content)
+					$("#senderModal .modal-body .sender").html(data.reciver)
+					$("#senderModal .modal-body .date").html(year+"."+month+"."+day)
+				}
+			})
+		}
+		
+		$("#resend_btn").click(function(){
+			if($("#message_title").val()==""){
+				alert("제목을 입력해 주세요")
+				$("#message_title").focus();
+				return false
+			}
+			if($("#message_content").val()==""){
+				alert("내용을 입력해주세요")
+				$("#message_content").focus();
+				return false;
+			}
+			$("#resendForm").submit();
+		})
 		$(".myInfo_btn").click(function(){
 			$.ajax({
 				type : "GET",
 				url : "/gth/updateMemberForm.do",
 				success : function(data){
-					$("#member_id").val(data.id)
-					$("#member_pw").val(data.pass)
-					$("#member_mail").val(data.email)
-					$("#siNm").val(data.addr1)
-					$("#sggNm").val(data.addr2)
-					$("#addrDetail").val(data.addr3)
-					$("#zipNo").val(data.postnum)
-					console.log(data)
+					$("#member_id").val(data.id);
+					$("#member_pw").val(data.pass);
+					$("#member_mail").val(data.email);
+					$("#siNm").val(data.addr1);
+					$("#sggNm").val(data.addr2);
+					$("#addrDetail").val(data.addr3);
+					$("#zipNo").val(data.postnum);
 				}
 			})
-		})
+		});
+		 $(".trainerInfo_btn").click(function(){
+			$.ajax({
+				type : "GET",
+				url : "/gth/updateTrainerForm.do",
+				data : "id=${user.id}",
+				success : function(data){
+					if(data.info ==""){
+						$("#trainer_info").val("");
+					}else{
+						$("#trainer_info").val(data.info)
+					}
+					if(data.video ==""){
+						$("#trainer_video").val("");
+					}else{
+						$("#trainer_video").val(data.video)
+					}
+					if(data.gymName ==""){
+						$("#trainer_gymName").val("");
+					}else{
+						$("#trainer_gymName").val(data.gymName)
+					}
+					if(data.height ==""){
+						$("#trainer_height").val("0");
+					}else{
+						$("#trainer_height").val(data.height)
+					}
+					if(data.weight ==""){
+						$("#trainer_weight").val("0");
+					}else{
+						$("#trainer_weight").val(data.weight)
+					}
+					if(data.history==""){
+						$("#trainer_history").val("");
+					}else{
+						$("#trainer_history").val(data.history)
+					}
+				}
+			})
+		}) 
 		$("#updateMember #submit").click(function(){
             if($("#member_pw").val()==''){
                 alert("비밀번호를 입력해주세요")
@@ -407,6 +587,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             }
             $("#updateMember").submit();
 		})
+
+        $("#updateTrainer #submit").click(function(){
+            $("#updateTrainer").submit();
+		})
 	</script>
 	<script>
 		var msg;
@@ -417,6 +601,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		    </c:when>
 		    <c:when test="${alert eq 's'}">
 		        msg = "수정되었습니다.";
+		        alert(msg);
+		    </c:when>
+		    <c:when test="${alert eq 'rs'}">
+		        msg = "메세지가 전송되었습니다.";
 		        alert(msg);
 		    </c:when>
 		</c:choose>

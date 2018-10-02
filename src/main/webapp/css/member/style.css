@@ -264,3 +264,46 @@
 	color: #fff;
 	border-radius: 20px;
 }
+.modifyWrap .inputWrap textarea{
+	width: 100%;
+	padding: 3px;
+    border: 1px solid #d9d9d9;
+}
+.modifyWrap .inlineBox{
+	width: 50%;
+	float: left;
+}
+
+#message .modal .modal-body div:after{
+	display: block;
+	clear: both;
+	content:'';
+}
+#message .modal .modal-body .info{
+	border-bottom: 2px solid #000000;
+	padding: 5px;
+}
+#message .modal .modal-body .info span{
+	display: inline-block;
+	padding: 0 5px;
+	color: #999;  
+}
+#message .modal .modal-body .content{
+	padding: 5px;
+	border-bottom: 2px solid #000;
+	min-height: 150px;
+}
+#message .modal .modal-body .inputWrap input{
+	border: 1px solid #d9d9d9;
+}
+#message .modal .modal-body .inputWrap textarea{
+	width: 100%;
+	padding: 3px;
+    border: 1px solid #d9d9d9;
+}
+.resend h5{
+	padding: 10px 0;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px solid #d9d9d9; 
+}

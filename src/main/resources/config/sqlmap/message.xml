@@ -2,5 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.mlec.repository.mapper.MessageMapper">
-
+	<!-- result map -->
+	<resultMap type="Message" id="MessageMap">
+		<result column="no" property="no"/>
+		<result column="sender" property="sender"/>
+		<result column="reciver" property="reciver"/>
+		<result column="content" property="content"/>
+		<result column="chk_status" property="chkStatus"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="reciver_del" property="reciverDel"/>
+		<result column="sender_del" property="senderDel"/>
+		<result column="title" property="title"/>
+	</resultMap>
+	
+	<!-- 받은 메세지 확인 -->
+	<select id="selectByReciver" parameterType="String" resultMap="MessageMap">
+		select * 
+		 from tb_message 
+		where reciver = #{reciver}
+	</select>
+	
+	<!-- 보낸 메세지 확인 -->
+	<select id="selectBySender" parameterType="String" resultMap="MessageMap">
+		select * 
+		 from tb_message 
+		where sender = #{sender}
+	</select>
+	<!-- 메세지 확인 (보낸,메세지 동일) -->
+	<select id="detailMessage" parameterType="int" resultMap="MessageMap">
+		select * 
+		from tb_message 
+		where no = #{no}
+	</select>
+	<!-- 메세지 읽음 여부  -->
+	<update id="changeStatus" parameterType="int">
+		update tb_message 
+    	set chk_status = 'Y' 
+    	where no = #{no} 
+	</update>
+	<!-- 메세지 보내기 -->
+	<insert id="sendMessage" parameterType="Message">
+		insert into tb_message (
+			no,
+			sender,
+			reciver,
+			content,
+			title
+		) values (
+			s_message_no.nextval,
+			#{sender},
+			#{reciver},
+			#{content},
+			#{title}
+		)
+	</insert>
 </mapper>
