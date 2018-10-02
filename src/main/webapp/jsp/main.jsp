@@ -144,9 +144,9 @@
 		
 		var wow = new WOW({});
 		wow.init();
-		$("window").load(function(){
-			$("#main_video").play();
-		})
+		window.onload = function(){
+			document.getElementById("main_video").play();
+		}
 	</script>
 </body>
 </html>

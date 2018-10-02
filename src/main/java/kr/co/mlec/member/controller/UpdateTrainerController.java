@@ -27,7 +27,7 @@ public class UpdateTrainerController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uploadPath = "D:/app/upload";
+		String uploadPath = "C:/app/upload";
 
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/hh");
 		String datePath = sdf.format(new Date());
@@ -75,7 +75,7 @@ public class UpdateTrainerController extends HttpServlet{
  			TrainerFile tf = new TrainerFile();
  			tf.setFilePath(datePath);
  			if(f != null) {
- 				tf.setId(video);
+ 				tf.setId(id);
  				System.out.println("파일 사이즈 (byte) : "+ f.length());
  	 			//사용자가 선택한 원본 파일명
  	 			String oriName=mRequest.getOriginalFileName(fName);
