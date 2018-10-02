@@ -95,7 +95,7 @@
 					<tr class="title" style="background:rgba(0,0,0,0.025);">
 						<td><i class="fas fa-volume-up" style="color:rgb(185, 36, 36); font-size: 27px;"></i></td>
 						<td>${newNotice.category}</td>
-						<td><a href="detail.do?no=${newNotice.no}&typeParam=notice&pageNum=${currentPage}">${newNotice.title}</a></td>
+						<td><a href="detail.do?no=${newNotice.no}&typeParam=notice&pageNum=${currentPage}" onclick="return doAction(${user.id})">${newNotice.title}</a></td>
 						<td>${newNotice.writer}</td>
 						<td><fmt:formatDate value="${newNotice.regDate}" pattern="yyyy.MM.dd"/></td>
 						<td>-</td>
