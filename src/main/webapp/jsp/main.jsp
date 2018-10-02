@@ -89,7 +89,7 @@
 								<c:forEach var="board" items="${list}" >
 									<tr class="title">
 										<td>${board.no}</td>
-										<td><a href="detail.do?no=${board.no}&typeParam=notice" style="color: black; text-decoration: none;">${board.title}</a></td>
+										<td><a href="board/detail.do?no=${board.no}&typeParam=notice" style="color: black; text-decoration: none;">${board.title}</a></td>
 										<td>${board.writer}</td>
 										<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
 										<td>${board.viewCnt}

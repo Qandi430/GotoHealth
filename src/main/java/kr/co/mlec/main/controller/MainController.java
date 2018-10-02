@@ -36,7 +36,7 @@ public class MainController extends HttpServlet{
 		board.setEndRow(endRow);
 		board.setType("공지사항");
 		
-		List<Board> list = mapper.selectBoardAllList(board);
+		List<Board> list = mapper.selectBoardAllNoArraysList(board);
 		request.setAttribute("alert", alert);
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/main.jsp");
