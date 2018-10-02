@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,10 @@
 <style type="text/css">
 .stWrap {
 	margin-top: 30px;
+}
+
+ul.stNav{
+margin-top:10px;
 }
 
 .stNav::after {
@@ -30,6 +35,11 @@
 	background: #4A83FD;
 	color: #fff;
 	transition: all 0.5s;
+}
+
+.stNav li a:hover{
+transition : 0.5s;
+background-color : black;
 }
 
 .stNav li.active a {
@@ -70,6 +80,10 @@
 	width: 50%;
 	float: left;
 	padding: 0 10px;
+}
+.stCon .imgBox:hover {
+	opacity:0.4;
+	transition : 0.5s;
 }
 
 .stCon .textBox {
@@ -121,8 +135,6 @@
 
 				</div>
 
-
-
 				<!--  -->
 			</div>
 
@@ -133,10 +145,10 @@
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#">공개영상</a></li>
 							</ul>
 
 
@@ -153,8 +165,8 @@
 주소 : ${t.addr1} <br>
 ${t.addr2} /
 ${t.addr3} <br>
-키 : ${t.height}	<br>
-몸무게 : ${t.weight} <br>
+키 : ${t.height} cm	<br>
+몸무게 : ${t.weight} kg <br>
 자기소개 : ${t.info} <br>
 Email : ${t.email} <br>
 											<div class="gymName">
@@ -168,10 +180,13 @@ Email : ${t.email} <br>
 								<div class="con2">약력 : ${t.history}</div>
 
 								<div class="con3">정보3</div>
-								</c:forEach>
 								<div class="con4">
-								<iframe width="560" height="315" src="https://www.youtube.com/embed/4pC1T5QBU8c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -180,10 +195,10 @@ Email : ${t.email} <br>
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#"></a></li>
 							</ul>
 							<div class="stCon">
 								<div class="con1 active">
@@ -198,8 +213,8 @@ Email : ${t.email} <br>
 주소 : ${t.addr1} <br>
 ${t.addr2} /
 ${t.addr3} <br>
-키 : ${t.height}	<br>
-몸무게 : ${t.weight} <br>
+키 : ${t.height} cm	<br>
+몸무게 : ${t.weight} kg <br>
 자기소개 : ${t.info} <br>
 Email : ${t.email} <br>
 											<div class="gymName">
@@ -207,9 +222,14 @@ Email : ${t.email} <br>
 											</div>
 									</div>
 								</div>
-								<div class="con2">정보 2</div>
+								<div class="con2">약력 : ${t.history}</div>
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
+								<div class="con4">
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
+								</div>
 								</c:forEach>
 							</div>
 						</div>
@@ -217,10 +237,10 @@ Email : ${t.email} <br>
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#"></a></li>
 							</ul>
 							<div class="stCon">
 								<div class="con1 active">
@@ -235,8 +255,8 @@ Email : ${t.email} <br>
 주소 : ${t.addr1} <br>
 ${t.addr2} /
 ${t.addr3} <br>
-키 : ${t.height}	<br>
-몸무게 : ${t.weight} <br>
+키 : ${t.height} cm<br>
+몸무게 : ${t.weight} kg <br>
 자기소개 : ${t.info} <br>
 Email : ${t.email} <br>
 											<div class="gymName">
@@ -244,9 +264,14 @@ Email : ${t.email} <br>
 											</div>
 									</div>
 								</div>
-								<div class="con2">정보 2</div>
+								<div class="con2">약력 : ${t.history}</div>
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
+								<div class="con4">
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
+								</div>
 								</c:forEach>
 							</div>
 						</div>
@@ -254,10 +279,10 @@ Email : ${t.email} <br>
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#"></a></li>
 							</ul>
 							<div class="stCon">
 								<div class="con1 active">
@@ -277,17 +302,22 @@ Email : ${t.email} <br>
 								</div>
 								<div class="con2">정보 2</div>
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
+								<div class="con4">
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#"></a></li>
 							</ul>
 							<div class="stCon">
 								<div class="con1 active">
@@ -307,17 +337,22 @@ Email : ${t.email} <br>
 								</div>
 								<div class="con2">정보 2</div>
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
+								<div class="con4">
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="stWrap">
 							<ul class="stNav">
-								<li class="active" data-target="con1"><a href="#">정보</a></li>
-								<li data-target="con2"><a href="#">정보2</a></li>
-								<li data-target="con3"><a href="#">정보3</a></li>
-								<li data-target="con4"><a href="#">정보4</a></li>
+								<li class="active" data-target="con1"><a href="#">프로필</a></li>
+								<li data-target="con2"><a href="#">약력</a></li>
+								<li class='bbb' data-target="con3"><a href="#">갤러리</a></li>
+								<li class='ccc' data-target="con4"><a href="#"></a></li>
 							</ul>
 							<div class="stCon">
 								<div class="con1 active">
@@ -337,7 +372,12 @@ Email : ${t.email} <br>
 								</div>
 								<div class="con2">정보 2</div>
 								<div class="con3">정보3</div>
-								<div class="con4">정보 4</div>
+								<div class="con4">
+								<iframe class="iframe" width="515" height="315" 
+								src='https://www.youtube.com/embed/${t.video.split("=")[1]}' 
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+								</iframe>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -357,7 +397,7 @@ Email : ${t.email} <br>
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">trainer name</h4>
+					<h4 class="modal-title" id="myModalLabel"></h4>
 				</div>
 				<div class="modal-body">
 					<img src="" class="img-responsive center-block" />
@@ -370,6 +410,7 @@ Email : ${t.email} <br>
 	</div>
 	<c:import url="/common/footer.jsp" />
 	<c:import url="/common/includeJs.jsp" />
+	
 	<script src="<c:url value="/js/healthsearch/script.js"/>"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b75a51b551d9bdf76c11d18c7194695e&libraries=services"></script>
@@ -419,37 +460,33 @@ Email : ${t.email} <br>
 			}
 
 			if (!keyword.replace(/^\s+|\s+$/g, '')) {
-
+				
 				return false;
 			}
 			var aaa = document.getElementById('keyword').value;
 			
 			
-			/* zzzzzzzzzzzzzz */
+			/* display none ==>  화면단에 나타내기 */
 			for (var i = 0; i < 5; i++) {
 				var jb1 = document.querySelectorAll('.stWrap')[i];
 				if (jb1.innerText.indexOf(aaa) != -1) {
 					jb1.style.display = 'unset';
 				}
-			}
-			;
+			};
 
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			 ps.keywordSearch(keyword, placesSearchCB); 
-			/* ps.categorySearch('BK9', placesSearchCB, {useMapBounds:true}); */
-			
 			
 		}
-			
-		
-
-		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
 			if (status === daum.maps.services.Status.OK) {
 
 				// 정상적으로 검색이 완료됐으면
 				// 검색 목록과 마커를 표출합니다
 				
+				
+				/* category select Error  */
 					/* console.dir(data[0].category_name.indexOf('헬스클럽')!=-1){} */
 				displayPlaces(data);
 				
@@ -775,7 +812,33 @@ Email : ${t.email} <br>
 		
 		
 	</script>
-
+<script>
+			var iframe = document.querySelectorAll(".iframe");
+			var stNav = document.querySelectorAll("li.bbb a");
+			var con4 = document.querySelectorAll(".ccc");
+	for(var i =0; i<stNav.length ; i++){
+		
+		if(con4[i].innerText.indexOf("공개영상")==-1){
+		   con4[i].style.display="none";
+		   stNav[i].style['border-radius']="0 10px 0 0";
+		}
+			if(iframe[i].src.length!=30){
+				con4[i].style.display="unset";
+				con4[i].innerHTML='<a href="#">공개영상</a>';
+				stNav[i].style['border-radius']="0 0 0 0";
+			}
+/* gkgk */
+			if(con4[i].innerText.indexOf("공개영상")!=-1){
+				console.dir(con4[i].innerText.indexOf("공개영상")!=-1);
+				con4[i].onclick = 
+				iframe[i].src += '?autoplay=1';					
+			};
+				
+				 
+				
+			}
+		
+	</script>
 
 </body>
 </html>
