@@ -26,7 +26,7 @@
 				　
 				</div>
 				<table class="table_notice" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
+					<tr class="title" style="background:rgba(0,0,0,0.03);">
 						<th>번호</th>
 						<th>구분</th>
 						<th>제목</th>
@@ -38,7 +38,7 @@
 						<tr class="title">
 							<td>${board.no}</td>
 							<td>${board.category}</td>
-							<td><a href="detail.do?no=${board.no}&typeParam=notice" style="color: black; text-decoration: none;">${board.title}</a></td>
+							<td><a href="detail.do?no=${board.no}&typeParam=notice&pageNum=${currentPage}" style="color: black; text-decoration: none;" onclick="return doAction(${user.id})">${board.title}</a></td>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
 						</tr>
@@ -51,8 +51,13 @@
 				</c:if>	
 				</table>
 				<form action="uploadForm.do" method="post">
-					<input type="hidden" name="typeParam" value="notice">
-					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					<input type="hidden" name="typeParam" value="notice">					
+					<c:if test="${empty user.id}">
+						<button type="button" class="btn btn-default" style="margin: 15px 1011px; border: none;" ></button>
+					</c:if>
+					<c:if test="${not empty user.id}">
+						<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					</c:if>
 				</form>
 				<div class="search">
 					<form action="noticeList.do" method="post">
@@ -173,5 +178,14 @@
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/community/script.js"/>"></script>
+	<script type="text/javascript">
+    function doAction(id) {
+        if(id == undefined) {
+            alert("로그인 하십시오.");
+            return false;
+        }
+        return true;
+    }    
+	</script>
 </body>
 </html>

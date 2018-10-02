@@ -40,6 +40,7 @@ public interface BoardMapper {
 	int recCount(int no);
 	List<Comment> selectComment(int no);
 	BoardFile selectFileList(int no);
+	int selectNewNoticeNumber();
 	
 	void insertBoard(Board board);
 	void replyInsert(Board board);

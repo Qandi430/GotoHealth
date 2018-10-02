@@ -22,37 +22,37 @@
 				<h2 class="contentsTitle">How To Exercise</h2>
 				<div class="item item01">
 					<img src="<c:url value="/img/contents01_item01.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">
+					<a href="<c:url value="/board/exerciseList.do"/>">
 						All
 					</a>
 				</div>
 				<div class="item item02">
 					<img src="<c:url value="/img/contents01_item02.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">Arm</a>
+					<a href="<c:url value="/board/armList.do"/>">Arm</a>
 				</div>
 				<div class="item item03">
 					<img src="<c:url value="/img/contents01_item03.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">shoulder</a>
+					<a href="<c:url value="/board/shoulderList.do"/>">shoulder</a>
 				</div>
 				<div class="item item04">
 					<img src="<c:url value="/img/contents01_item04.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">Chest</a>
+					<a href="<c:url value="/board/chestList.do"/>">Chest</a>
 				</div>
 				<div class="item item05">
 					<img src="<c:url value="/img/contents01_item05.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">Back</a>
+					<a href="<c:url value="/board/backList.do"/>">Back</a>
 				</div>
 				<div class="item item06">
 					<img src="<c:url value="/img/contents01_item06.jpg"/>" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">Leg</a>
+					<a href="<c:url value="/board/legList.do"/>">Leg</a>
 				</div>
 				<div class="item item07">
 					<img src="<c:url value="/img/contents01_item07.jpg" />" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">ABS</a>
+					<a href="<c:url value="/board/absList.do"/>">ABS</a>
 				</div>
 				<div class="item item08">
 					<img src="<c:url value="/img/contents01_item08.jpg" />" alt="">
-					<a href="<c:url value="/community/exercise_list.jsp"/>">etc</a>
+					<a href="<c:url value="/board/etcList.do"/>">etc</a>
 				</div>		
 			</div>
 		</section>

@@ -28,6 +28,7 @@ public class DetailBoardController extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		String typeParam = request.getParameter("typeParam");
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
 		BoardMapper mapper = 
 			MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
@@ -42,6 +43,7 @@ public class DetailBoardController extends HttpServlet {
 		HttpSession session = (HttpSession) request.getAttribute("user");
 		request.setAttribute("board", board);		
 		request.setAttribute("typeParam", typeParam);
+		request.setAttribute("pageNum", pageNum);
 //		request.setAttribute("comment", comment);
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/board_detail.jsp");
 		rd.forward(request, response);

@@ -195,11 +195,11 @@
 				<div class="box_notice">
 					<div class="inner">※  &nbsp;모든 내역은 필수입니다.</div>
 				</div>
-				<form action="/gth/board/write.do" enctype="multipart/form-data" method="post" class="write">
+				<form action="/gth/board/write.do" enctype="multipart/form-data" method="post" class="write" name="mForm" onsubmit="return doAction()">
 					<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th>제목 <span>*</span></th>
-							<td><input type="text" name="title" placeholder="제목을 입력하세요."></td>
+							<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요."></td>
 						</tr>
 						<c:if test="${typeParam != 'notice' && typeParam != 'free' && typeParam != 'gallery' && typeParam != 'qna'}">
 							<tr>
@@ -330,7 +330,7 @@
 					</c:if>
 					
 					<!-- 나중에 아이디 설정 -->
-					<input type="hidden" name="writer" value="cho">	
+					<input type="hidden" name="writer" value="${user.id}">	
 					
 					<div class="box_buttons cf">
 						<c:if test="${typeParam == 'exercise'}">
@@ -370,7 +370,7 @@
 							<a href="<c:url value="qnaList.do"/>" class="btn_left">취소하기</a>
 						</c:if>
 						<button>
-							<a class="btn_right">등록하기</a>
+							<a class="btn_right" onclick="return doAction()">등록하기</a>
 						</button>	
 					</div>
 				</form>
@@ -414,6 +414,24 @@
         	}
       	});
     } 
+	
+    function doAction() {
+        var f = document.mForm; 
+
+        if(f.title.value == "") {
+            alert("제목을 입력하세요");
+            f.title.focus();
+            return false;
+        }
+        
+        if(f.content.value == "") {
+            alert("내용을 입력하세요");
+            f.content.focus();
+            return false;
+        }
+
+        return true;
+    }    
 </script>	
 </body>
 </html>

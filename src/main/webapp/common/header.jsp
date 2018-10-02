@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
 	<div class="logo">
-		<h1><a href="<c:url value="/main.do"/>"><img src="<c:url value="/img/logo.png"/>" alt="" class="img-responsive"></a></h1>
+		<h1 style="margin:0;"><a href="<c:url value="/main.do"/>"><img src="<c:url value="/img/logo.png"/>" alt="" class="img-responsive"></a></h1>
 	</div>
 	<nav>
 		<ul>

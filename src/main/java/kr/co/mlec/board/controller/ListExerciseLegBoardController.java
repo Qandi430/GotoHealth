@@ -138,6 +138,10 @@ public class ListExerciseLegBoardController extends HttpServlet {
 			request.setAttribute("word", word);
 		} 
 		
+		int newNoticeNo = mapper.selectNewNoticeNumber();
+		Board newNotice = mapper.selectBoardByNo(newNoticeNo); 
+		request.setAttribute("newNotice", newNotice);
+		
 		HttpSession session = (HttpSession) request.getAttribute("user");
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/community/exerciseLeg_list.jsp");
 		rd.forward(request, response);

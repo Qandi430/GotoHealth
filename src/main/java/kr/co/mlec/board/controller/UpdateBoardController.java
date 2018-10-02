@@ -24,6 +24,7 @@ public class UpdateBoardController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String typeParam = request.getParameter("typeParam");
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
 		Board board = new Board();
 		board.setNo(no);
@@ -33,7 +34,7 @@ public class UpdateBoardController extends HttpServlet {
 		BoardMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
 		mapper.updateBoard(board);
 		
-		response.sendRedirect("detail.do?no=" + no + "&typeParam=" + typeParam);
+		response.sendRedirect("detail.do?no=" + no + "&typeParam=" + typeParam + "&pageNum=" + pageNum);
 	} // service
 	
 } // end class

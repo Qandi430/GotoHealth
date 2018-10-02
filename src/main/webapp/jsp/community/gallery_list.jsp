@@ -72,7 +72,7 @@
 					<c:forEach var="board" items="${list}" >
 						<c:if test="${board.type == '포토갤러리'}">
 							<li class="title">
-								<a href="detail.do?no=${board.no}&typeParam=gallery">							
+								<a href="detail.do?no=${board.no}&typeParam=gallery&pageNum=${currentPage}" onclick="return doAction(${user.id})">							
 								<c:forEach var="file" items="${board.fileList}">
 									<c:choose>
 										<c:when test="${empty file.path}">
@@ -103,8 +103,13 @@
 					</c:if>	
 				</table>		
 				<form action="uploadForm.do" method="post">
-					<input type="hidden" name="typeParam" value="gallery">
-					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					<input type="hidden" name="typeParam" value="gallery">					
+					<c:if test="${empty user.id}">
+						<button type="button" class="btn btn-default" style="margin: 15px 1011px; border: none;" ></button>
+					</c:if>
+					<c:if test="${not empty user.id}">
+						<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					</c:if>
 				</form>
 				<div class="search">
 					<form action="galleryList.do" method="post">
@@ -225,5 +230,14 @@
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/community/script.js"/>"></script>
+	<script type="text/javascript">
+    function doAction(id) {
+        if(id == undefined) {
+            alert("로그인 하십시오.");
+            return false;
+        }
+        return true;
+    }    
+	</script>
 </body>
 </html>

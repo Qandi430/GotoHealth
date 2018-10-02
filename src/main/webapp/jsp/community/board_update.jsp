@@ -195,7 +195,7 @@
 				<div class="box_notice">
 					<div class="inner">※  &nbsp;모든 내역은 필수입니다.</div>
 				</div>
-					<form action="update.do" method="post" class="update">
+					<form action="update.do" method="post" class="update" name="mForm" onsubmit="return doAction()">
 						<table class="table_qna" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th>제목 <span>*</span></th>
@@ -210,45 +210,46 @@
 						</table>
 						<input type="hidden" name="no" value="${board.no}">
 						<input type="hidden" name="typeParam" value="${typeParam}">
+						<input type="hidden" name="pageNum" value="${pageNum}">
 						<div class="box_buttons cf">
 						<c:if test="${typeParam == 'notice'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=notice'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=notice&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'free'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=free'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=free&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'gallery'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=gallery'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=gallery&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'qna'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=qna'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=qna&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exercise'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exercise'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exercise&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseChest'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseChest'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseChest&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseBack'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseBack'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseBack&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseLeg'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseLeg'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseLeg&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseShoulder'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseShoulder'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseShoulder&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseArm'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseArm'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseArm&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseAbs'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseAbs'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseAbs&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 						<c:if test="${typeParam == 'exerciseEtc'}">
-							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseEtc'/>" class="btn_left">취소하기</a>
+							<a href="<c:url value='detail.do?no=${board.no}&typeParam=exerciseEtc&pageNum=${pageNum}'/>" class="btn_left">취소하기</a>
 						</c:if>
 							<button>
-								<a class="btn_right">수정하기</a>
+								<a class="btn_right" onclick="return doAction()">수정하기</a>
 							</button>
 						</div>
 				</form>
@@ -291,6 +292,24 @@
         	}
       	});
     } 
+	
+    function doAction() {
+        var f = document.mForm ; 
+
+        if(f.title.value == "") {
+            alert("제목을 입력하세요");
+            f.title.focus();
+            return false;
+        }
+
+        if(f.content.value == "") {
+            alert("내용을 입력하세요");
+            f.content.focus();
+            return false;
+        }
+        
+        return true;
+    }    
 	</script>
 </body>
 </html>

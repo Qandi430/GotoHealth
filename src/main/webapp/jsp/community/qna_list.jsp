@@ -10,6 +10,7 @@
 <c:import url="/common/includeCss.jsp"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/community/common.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/community/style.css"/>"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
 	<c:import url="/common/header.jsp"/>
@@ -26,7 +27,7 @@
 				　
 				</div>
 				<table class="table_notice" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
+					<tr style="background:rgba(0,0,0,0.03);">
 						<th>번호</th>
 						<th>구분</th>
 						<th>제목</th>
@@ -34,13 +35,21 @@
 						<th>등록일</th>
 						<th>조회수</th>
 					</tr>
+					<tr class="title" style="background:rgba(0,0,0,0.02);">
+						<td><i class="fas fa-volume-up" style="color:rgb(185, 36, 36); font-size: 27px;"></i></td>
+						<td>${newNotice.category}</td>
+						<td><a href="detail.do?no=${newNotice.no}&typeParam=notice&pageNum=${currentPage}">${newNotice.title}</a></td>
+						<td>${newNotice.writer}</td>
+						<td><fmt:formatDate value="${newNotice.regDate}" pattern="yyyy.MM.dd"/></td>
+						<td>-</td>
+					</tr>
 				<c:forEach var="board" items="${list}" >
 					<c:if test="${board.type == '질문과 답변'}">
 						<tr class="title">
 							<td>${board.no}</td>
 							<td>${board.category}</td>
 							<td>	 					  	
-                 		 	    <a href="detail.do?no=${board.no}&typeParam=qna" style="color: black; text-decoration: none;">${board.title}</a>
+                 		 	    <a href="detail.do?no=${board.no}&typeParam=qna&pageNum=${currentPage}" style="color: black; text-decoration: none;" onclick="return doAction(${user.id})">${board.title}</a>
                  		    </td>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/></td>
@@ -55,8 +64,13 @@
 				</c:if>			
 				</table>
 				<form action="uploadForm.do" method="post">
-					<input type="hidden" name="typeParam" value="qna">
-					<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					<input type="hidden" name="typeParam" value="qna">					
+					<c:if test="${empty user.id}">
+						<button type="button" class="btn btn-default" style="margin: 15px 1011px; border: none;" ></button>
+					</c:if>
+					<c:if test="${not empty user.id}">
+						<button class="btn btn-default" style="margin: 15px 1011px">글쓰기</button>
+					</c:if>
 				</form>
 				<div class="search">
 					<form action="qnaList.do" method="post">
@@ -177,5 +191,14 @@
 	<c:import url="/common/footer.jsp"/>
 	<c:import url="/common/includeJs.jsp"/>
 	<script src="<c:url value="/js/community/script.js"/>"></script>
+	<script type="text/javascript">
+    function doAction(id) {
+        if(id == undefined) {
+            alert("로그인 하십시오.");
+            return false;
+        }
+        return true;
+    }    
+	</script>
 </body>
 </html>

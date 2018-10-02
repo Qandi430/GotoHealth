@@ -63,6 +63,7 @@ public class WriteFormController extends HttpServlet {
 				System.out.println("원본파일명  : " + oriName);
 				String systemName = mRequest.getFilesystemName(fName);
 				System.out.println("서버파일명 : " + systemName);
+				HttpSession session = (HttpSession) request.getAttribute("user");
 				response.setContentType("application/json; charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println(new Gson().toJson("http://localhost:8000/local_img" + datePath + "/" + systemName));

@@ -490,4 +490,11 @@
 		 where no = #{no}
 	</delete>
 	
+	<!-- 가장 최신 공지사항 가져오기 -->
+	<select id="selectNewNoticeNumber" resultType="int" >
+		select max(no) 
+		  from tb_board 
+		 group by type 
+		having type = '공지사항' 
+	</select>
 </mapper>

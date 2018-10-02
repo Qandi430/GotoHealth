@@ -230,43 +230,45 @@
 						</div>
 					</div>
 				<div class="update-deletebutton">
-					<a href="updateForm.do?no=${board.no}&typeParam=${typeParam}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">수정</a>
-					<a href="delete.do?no=${board.no}&typeParam=${typeParam}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">삭제</a>
+					<c:if test="${user.id eq board.writer}">
+						<a href="updateForm.do?no=${board.no}&typeParam=${typeParam}&pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">수정</a>
+						<a href="delete.do?no=${board.no}&typeParam=${typeParam}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">삭제</a>
+					</c:if>
 					<c:if test="${typeParam == 'exercise'}">
-						<a href="<c:url value="exerciseList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="exerciseList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseChest'}">
-						<a href="<c:url value="chestList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="chestList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseBack'}">
-						<a href="<c:url value="backList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="backList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseLeg'}">
-						<a href="<c:url value="legList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="legList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseShoulder'}">
-						<a href="<c:url value="shoulderList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="shoulderList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseArm'}">
-						<a href="<c:url value="armList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="armList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseAbs'}">
-						<a href="<c:url value="absList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="absList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'exerciseEtc'}">
-						<a href="<c:url value="etcList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="etcList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'notice'}">
-						<a href="<c:url value="noticeList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="noticeList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'free'}">
-						<a href="<c:url value="freeList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="freeList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'gallery'}">
-						<a href="<c:url value="galleryList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="galleryList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 					<c:if test="${typeParam == 'qna'}">
-						<a href="<c:url value="qnaList.do"/>" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
+						<a href="<c:url value="qnaList.do"/>?pageNum=${pageNum}" type="button" class="btn btn-default btn-lg" style="color: black; text-decoration: none">목록</a>
 					</c:if>
 				</div>	
 				<div class="rn">
@@ -296,7 +298,7 @@
                 type: "POST",
                 data: {
                     no: ${board.no},
-                    id: 'ex'
+                    id: "${user.id}"
                 },
                 success: function (result) {
                 	if(result == 0) {
@@ -323,15 +325,16 @@
 			});
 	    };
 	    recCount();
-	    getCommentList(${board.no});
+	    getCommentList(${board.no}, "${user.id}");
 	
-		function getCommentList(no) {
+		function getCommentList(no, id) {
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
 				if(xhr.readyState == 4) {
 					if(xhr.status == 200) {
 						var board = JSON.parse(xhr.responseText);
 						var html = "<table class='table_qna comment' width='100%' cellpadding='0' cellspacing='0'>";
+						console.log(id)
 						for(let c of board.commentList) {
 							html += "<tr style='border-top: 1px solid #6d686b'>";
 							html += "<td>" + c.writer + "</td>";
@@ -343,8 +346,10 @@
 							html += "<tr>";
 							html += "<td colspan='2' id='b" + c.commentNo + "'>";
 							html += "<span class='update-button' style='margin:0 0; float:right'>";
+							if(id == c.writer) {
 							html += "<button id='up" + c.commentNo + "' class='btn btn-default c_update' onclick='commentUpdateForm(" + c.commentNo + ",\"" + c.content + "\")'>수정</button>";
 							html += "<button id='del" + c.commentNo + "' class='btn btn-default c_delete' onclick='commentDelete(" + c.commentNo + "," + c.no + ")'>삭제</button>";
+							}
 							html += "</span>";
 							html += "</td>";
 							html += "</tr>";
@@ -365,7 +370,7 @@
 
     }); /* 추천, 최초 댓글 리스트 */	
     
-	function getCommentList(no) {
+	function getCommentList(no, id) {
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState == 4) {
@@ -383,8 +388,10 @@
 						html += "<tr>";
 						html += "<td colspan='2' id='b" + c.commentNo + "'>";
 						html += "<span class='update-button' style='margin:0 0; float:right'>";
+						if(id == c.writer) {
 						html += "<button id='up" + c.commentNo + "' class='btn btn-default c_update' onclick='commentUpdateForm(" + c.commentNo + ",\"" + c.content + "\")'>수정</button>";
 						html += "<button id='del" + c.commentNo + "' class='btn btn-default c_delete' onclick='commentDelete(" + c.commentNo + "," + c.no + ")'>삭제</button>";
+						}
 						html += "</span>";
 						html += "</td>";
 						html += "</tr>";
@@ -405,14 +412,14 @@
     	
 	$("#comment").click(function() {
 		var no = ${board.no};
-		var writer = 'writer';
+		var writer = "${user.id}";
 		var content = document.getElementById("comment_content").value;
 		$.ajax({
 			type: "POST",
 			url: "/gth/board/commentinsert.do",
 			data: {no: no, writer: writer, content: content},
 			success: function(data) {
-				getCommentList(no);
+				getCommentList(no, "${user.id}");
 			}
 		});
 	}); /* 등록 */
@@ -421,7 +428,7 @@
 		$.ajax({
 			url: "/gth/board/commentdelete.do?cno=" + cno,
 			success: function(data) {
-				getCommentList(no);
+				getCommentList(no, "${user.id}");
 			}
 		});
 	};/* 삭제 */
@@ -429,7 +436,7 @@
 	function commentUpdateForm(cno, content) {
 		var no = ${board.no};
 		$("#b" + cno).append(
-				$("<input type='text' id='input" + cno + "' class='input' value='" + content + "'/>"),
+				$("<textarea id='input" + cno + "' class='input'>" + content + "</textarea>"),
 				$("<button id='update" + cno + "' class='btn btn-default updatebnt' onclick='Commentupdate(" + cno + ", " + no + ", " + "\"input" + cno + "\")'>").html("수정"),
 				$("<button id='cancel" + cno + "' class='btn btn-default cancelbnt' onclick='Commentcancel()'>").html("취소")
 		)
@@ -454,7 +461,7 @@
 			url: "/gth/board/commentupdate.do",
 			data: {cno: cno, content: content},
 			success: function(data) {
-				getCommentList(no)
+				getCommentList(no, "${user.id}")
 			}
 		});
 	};/* 수정  */
