@@ -182,6 +182,7 @@
       height: '360',
       width: '640',
       videoId: 'dy2UQofvwH8?autoplay=1&playlist=dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8&loop=1',
+      playerVars: { 'autoplay': 1, 'controls': 0,'autohide':1,'wmode':'opaque','origin':'http://192.168.0.67:8000/gth/main.do' },
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
