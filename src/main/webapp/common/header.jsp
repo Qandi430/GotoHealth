@@ -41,7 +41,7 @@
            <button class="forgot">FORGOT PASSWORD ?</button> <button class="login" id="login_btn">LOG IN</button> <button class="signup" onclick="location.href='<c:url value="/signupForm.do"/>'">SIGN UP</button>
          
            <br>
-           <div id="naverIdLogin" style="width:500px; margin-bottom:10px"></div>
+           <div id="naverIdLogin" style="width:400px; margin-bottom:10px"></div>
            <div id="kakao-login-btn"></div>
 		   <a href="http://developers.kakao.com/logout"></a>
          </div>
