@@ -31,7 +31,7 @@ public interface BoardMapper {
 	List<Board> searchCategoryTitle(Board board);
 	List<Board> searchCategoryContent(Board board);
 	List<Board> searchCategoryTitleContent(Board board);
-	List<Board> selectQnaBoard(int startRow, int endRow);
+	List<Board> selectQnaBoard(Board board);
 	List<Board> searchQnaTitle(Board board);
 	List<Board> searchQnaContent(Board board);
 	List<Board> searchQnaTitleContent(Board board);

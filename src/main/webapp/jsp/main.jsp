@@ -15,9 +15,10 @@
 	<c:import url="/common/header.jsp"/>
 	<div id="wrap">
 		<section class="contents" id="contents01">
-			<div id="videoWrap" class="video-container">
-				<div id="player"></div>
-			</div>
+			<!-- 16:9 aspect ratio -->
+			<video id="main_video" autoplay loop>
+			  <source src="<c:url value="/img/gth.mp4"/>" type="video/mp4">
+			</video>
 			<span class="msg" style="background:url(<c:url value="/img/main-bg.png"/>)no-repeat center center/cover;"></span>
 		</section>
 		<section class="contents" id="contents02">
@@ -143,77 +144,9 @@
 		
 		var wow = new WOW({});
 		wow.init();
-		
-		/*  jQuery(function(){
-		  jQuery("#video").YTPlayer({
-			onReady:function(player){
-				setTimeout(function() {
-					$('#playbtn').trigger('click');
-				},2000);	
-			
-			}
-		  });
-		});
-	jQuery(window).bind("orientationchange", function(e) { // С؎ܼ؎ |ȯ óخ
-        var orientation = window.orientation;
-		
-        if (orientation == 90 || orientation == -90) { //가로
-		
-			$('#wrap').addClass('horizontal');
-			location.reload();
-        } else { //세로 변경시
-		
-			$('#wrap').addClass('vertical');
-			location.reload();
-        }
-    });		 */	
-	// 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '360',
-      width: '640',
-      videoId: 'dy2UQofvwH8?autoplay=1&playlist=dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8&loop=1',
-      playerVars: { 'autoplay': 1, 'controls': 0,'autohide':1,'wmode':'opaque','origin':'http://192.168.0.67:8000/gth/main.do' },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  // 5. The API calls this function when the player's state changes.
-  //    The function indicates that when playing a video (state=1),
-  //    the player should play for six seconds and then stop.
-  var done = false;
-  function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-      setTimeout(stopVideo, 6000);
-      done = true;
-    }
-  }
-  function stopVideo() {
-    player.stopVideo();
-  }
-  $(document).ready(function(){
-	$("#play").click(function(){
-		player.stopVideo();
-	})
-  })
-	
+		$("window").load(function(){
+			$("#main_video").play();
+		})
 	</script>
 </body>
 </html>

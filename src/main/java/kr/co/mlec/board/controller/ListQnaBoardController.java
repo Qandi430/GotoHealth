@@ -103,10 +103,10 @@ public class ListQnaBoardController extends HttpServlet {
 				list = mapper.searchQnaTitleContent(board);
 			}
 			if(search == "") {
-				list = mapper.selectQnaBoard(startRow, endRow);
+				list = mapper.selectQnaBoard(board);
 			}
 		} catch (Exception e) {
-			list = mapper.selectQnaBoard(startRow, endRow);
+			list = mapper.selectQnaBoard(board);
 		}
 
 		request.setAttribute("list", list);

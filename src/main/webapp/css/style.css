@@ -223,7 +223,7 @@ footer .copy{
   font-size:62px;
   color: black;
   width:400px;
-  font-family:'맑은고딕';
+  font-family:'留묒�怨좊뵓';
   margin:auto;
   text-align:center;
 }
@@ -313,5 +313,12 @@ top:-10vh;
 .entry-content object,
 .entry-content embed {
 max-width: 100%;
+}
+
+#main_video{
+	width: 100%;
+	max-width: 100%;
+	top: -12vh;
+	position: relative;
 }
 

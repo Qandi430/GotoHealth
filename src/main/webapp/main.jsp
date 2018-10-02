@@ -15,7 +15,10 @@
 	<c:import url="/common/header.jsp"/>
 	<div id="wrap">
 		<section class="contents" id="contents01">
-			
+			<!-- 16:9 aspect ratio -->
+			<video id="main_video" autoplay loop>
+			  <source src="<c:url value="/img/gth.mp4"/>" type="video/mp4">
+			</video>
 		</section>
 		<section class="contents" id="contents02">
 			<div class="container">
