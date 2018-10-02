@@ -168,7 +168,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                            </div>
 	                            <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="resend_btn">보내기</button>
-                                    <button type="button" class="btn btn-primary" id="del_btn">삭제</button>
+                                    <button type="button" class="btn btn-primary del_btn">삭제</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 	                            </div>
 	                            </div>
@@ -189,8 +189,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                                     
 	                            </div>
 	                            <div class="modal-footer">
-	                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                                <button type="button" class="btn btn-primary">Save changes</button>
+	                         	   <button type="button" class="btn btn-primary del_btn">삭제</button>
+	                               <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> 
 	                            </div>
 	                            </div>
 	                        </div>
@@ -317,7 +317,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 <div role="tabpanel" class="tab-pane" id="trainerInfo">
                         <h5>트레이너 정보</h5>
                         <div class="modifyWrap">
-                            <form action="<c:url value="/updateTrainer.do"/>" method="POST" id="updateTrainer" name="updagteTrainer">
+                            <form action="<c:url value="/updateTrainer.do"/>" method="POST" id="updateTrainer" name="updagteTrainer" enctype="multipart/form-data">
                                 <div class="inputWrap">
                                     <label for="member_id">ID</label>
                                     <input type="text" name="member_id" id="member_id" value="${user.id}" readonly value="${user.id}">
@@ -353,6 +353,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                                     <label for="trainer_history">History</label>
                                     <textarea name="trainer_history" id="trainer_history" cols="30" rows="10"></textarea>                                   
                                     <span class="barColor"></span>
+                                </div>
+                                <div class="inputWrap">
+                                	<label for="">Image</label>
+                                	<input type="file" name="file1" id="file1"/>
                                 </div>
                                 <div class="inputWrap">
                                     <a href="#" id="submit">수정</a>
@@ -473,9 +477,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 					$("#reciverModal .modal-body .resend #message_title").val("re : "+data.title)
 					$("#reciverModal .modal-body .resend #message_reciver").val(data.sender)
 					$("#reciverModal .modal-body .resend #message_sender").val(data.reciver)
+					$("#reciverModal .modal-footer .del_btn").attr("onclick","delMessage('r',"+no+")")
 				}
 			})
-		}
+		}//받은 메세지 디테일
 		
 		function sendDetail(no){
 			$.ajax({
@@ -498,9 +503,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 					$("#senderModal .modal-body .content").html(data.content)
 					$("#senderModal .modal-body .sender").html(data.reciver)
 					$("#senderModal .modal-body .date").html(year+"."+month+"."+day)
+					$("#senderModal .modal-footer .del_btn").attr("onclick","delMessage('s',"+no+")")
 				}
 			})
-		}
+		}//보낸메시지 디테일
 		
 		$("#resend_btn").click(function(){
 			if($("#message_title").val()==""){
@@ -514,7 +520,17 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 				return false;
 			}
 			$("#resendForm").submit();
-		})
+		})//답장
+		
+		function delMessage(type,no){
+			if(confirm("정말 삭제하시겠습니까?")==true){
+				location.href ="/gth/delMessage.do?type="+type+"&no="+no;
+			}else{
+				return;
+			}
+		}
+		
+		
 		$(".myInfo_btn").click(function(){
 			$.ajax({
 				type : "GET",

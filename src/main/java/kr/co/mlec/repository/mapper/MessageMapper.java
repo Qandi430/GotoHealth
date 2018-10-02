@@ -11,4 +11,8 @@ public interface MessageMapper {
 	Message detailMessage(int no);
 	void changeStatus(int no);
 	void sendMessage(Message message);
+	
+	void delMessageByReciver(int no);
+	void delMessageBySender(int no);
+	void delMessageAll(int no);
 }

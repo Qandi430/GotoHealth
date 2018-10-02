@@ -11,6 +11,15 @@
 		<result column="weight" property="weight"/>
 		<result column="history" property="history"/>
 	</resultMap>
+	
+	<resultMap type="TrainerFile" id="TrainerFileMap">
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="file_ori" property="fileOri"/>
+		<result column="file_name" property="fileName"/>
+		<result column="file_path" property="filePath"/>
+		<result column="file_size" property="fileSize"/>
+	</resultMap>
 	<!-- 로그인체크 -->
 	<select id="selectMemberInfo" parameterType="Member" resultType="Member">
     	select * 
@@ -77,4 +86,11 @@
     		history = #{history} 
     	where id = #{id} 
     </update>
+    <insert id="insertTrainerFile" parameterType="TrainerFile">
+    	insert into tb_trainer_file(
+    		no, id, file_ori, file_name, file_path, file_size
+    	) values (
+    		s_trFile_no.nextval, #{id}, #{fileOri}, #{fileName}, #{filePath}, #{fileSize}
+    	)
+    </insert>
 </mapper>

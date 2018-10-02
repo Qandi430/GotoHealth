@@ -9,5 +9,6 @@
 <link href="<c:url value="/css/font.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/font-awesome.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/owl.carousel.min.css"/>" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery.mb.YTPlayer.css"/>"/>
 <link href="<c:url value="/css/reset.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">

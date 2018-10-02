@@ -10,5 +10,6 @@
 <script src="<c:url value="/js/bootstrap.js"/>"></script>       
 <script src="<c:url value="/js/owl.carousel.js"/>"></script>       
 <script src="<c:url value="/js/wow.min.js"/>"></script>       
-<script src="<c:url value="/js/easing.js"/>"></script>       
+<script src="<c:url value="/js/easing.js"/>"></script>
+<script src="<c:url value="/js/jquery.mb.YTPlayer.js"/>"></script>	       
 <script src="<c:url value="/js/script.js"/>"></script>       

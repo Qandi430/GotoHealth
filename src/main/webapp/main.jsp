@@ -86,41 +86,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>10</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td><a href="<c:url value="/community/notice_detail.jsp"/>">Test</a></td>
-									<td>admin</td>
-									<td>2018.09.10</td>
-									<td>1</td>
-								</tr>
 								
 							</tbody>
 						</table>

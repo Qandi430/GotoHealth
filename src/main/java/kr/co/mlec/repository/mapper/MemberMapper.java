@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.mlec.repository.domain.Member;
 import kr.co.mlec.repository.domain.Trainer;
+import kr.co.mlec.repository.domain.TrainerFile;
 
 public interface MemberMapper {
 	//회원 찾기 - 로그인
@@ -24,4 +25,6 @@ public interface MemberMapper {
 	Trainer selectTrainerById(String id);
 	//트레이너 정보 수정
 	void updateTrainer(Trainer trainer);
+	
+	void insertTrainerFile(TrainerFile trainerFile);
 }

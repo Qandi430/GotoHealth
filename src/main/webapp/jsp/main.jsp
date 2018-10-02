@@ -15,7 +15,10 @@
 	<c:import url="/common/header.jsp"/>
 	<div id="wrap">
 		<section class="contents" id="contents01">
-			
+			<div id="videoWrap" class="video-container">
+				<div id="player"></div>
+			</div>
+			<span class="msg" style="background:url(<c:url value="/img/main-bg.png"/>)no-repeat center center/cover;"></span>
 		</section>
 		<section class="contents" id="contents02">
 			<div class="container">
@@ -104,51 +107,14 @@
 		<section class="contents" id="contents04">
 			<div class="container">
 				<div id="main_slide" class="owl-carousel owl-theme">
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item01.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item02.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item03.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item04.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item05.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item06.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item07.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item08.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
-					<div class="item">
-						<a href="<c:url value="/product/product.jsp"/>">
-							<img src="<c:url value="/img/contents04_item09.jpg" />" alt="" class="img-responsive ceenter-block">
-						</a>
-					</div>
+				<c:forEach var="a" items="${listPro}" varStatus="loop">
+			    	<div class="item">
+			    		<a href="">
+			    			<img src="${a.img}" class="img-responsive center-block" style="max-width: 180px;">
+			    			<h6>${a.title}</h6>
+			    		</a>
+			    	</div>
+				  </c:forEach>
 				</div>
 			</div>
 		</section>
@@ -177,6 +143,76 @@
 		
 		var wow = new WOW({});
 		wow.init();
+		
+		/*  jQuery(function(){
+		  jQuery("#video").YTPlayer({
+			onReady:function(player){
+				setTimeout(function() {
+					$('#playbtn').trigger('click');
+				},2000);	
+			
+			}
+		  });
+		});
+	jQuery(window).bind("orientationchange", function(e) { // С؎ܼ؎ |ȯ óخ
+        var orientation = window.orientation;
+		
+        if (orientation == 90 || orientation == -90) { //가로
+		
+			$('#wrap').addClass('horizontal');
+			location.reload();
+        } else { //세로 변경시
+		
+			$('#wrap').addClass('vertical');
+			location.reload();
+        }
+    });		 */	
+	// 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '360',
+      width: '640',
+      videoId: 'dy2UQofvwH8?autoplay=1&playlist=dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8,dy2UQofvwH8&loop=1',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+  $(document).ready(function(){
+	$("#play").click(function(){
+		player.stopVideo();
+	})
+  })
+	
 	</script>
 </body>
 </html>

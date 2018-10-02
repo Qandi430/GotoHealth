@@ -19,14 +19,14 @@
 	<select id="selectByReciver" parameterType="String" resultMap="MessageMap">
 		select * 
 		 from tb_message 
-		where reciver = #{reciver}
+		where reciver = #{reciver} and RECIVER_DEL = 'N'
 	</select>
 	
 	<!-- 보낸 메세지 확인 -->
 	<select id="selectBySender" parameterType="String" resultMap="MessageMap">
 		select * 
 		 from tb_message 
-		where sender = #{sender}
+		where sender = #{sender} and sender_del = 'N'
 	</select>
 	<!-- 메세지 확인 (보낸,메세지 동일) -->
 	<select id="detailMessage" parameterType="int" resultMap="MessageMap">
@@ -56,4 +56,20 @@
 			#{title}
 		)
 	</insert>
+	<!-- 받은 메세지 삭제 -->
+	<update id="delMessageByReciver" parameterType="int">
+		update tb_message 
+		set RECIVER_DEL = 'Y' 
+		where no = #{no}
+	</update>
+	<!-- 보낸 메세지 삭제 -->
+	<update id="delMessageBySender" parameterType="int">
+		update tb_message 
+		set SENDER_DEL = 'Y' 
+		where no = #{no}
+	</update>
+	<!-- 전체 삭제 -->
+	<delete id="delMessageAll" parameterType="int">
+		delete from tb_message where no = #{no}
+	</delete>
 </mapper>

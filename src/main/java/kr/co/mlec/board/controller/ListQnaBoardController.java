@@ -90,7 +90,6 @@ public class ListQnaBoardController extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
-
 		try {
 			board.setKeyword(word);
 			
