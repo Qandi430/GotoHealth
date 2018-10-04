@@ -9,6 +9,16 @@
 <title>GoToHealth - Search</title>
 <c:import url="/common/includeCss.jsp" />
 <style type="text/css">
+.gymName a{
+ text-decoration: underline;
+color : rgba(27,127,204,.8);
+
+}
+
+.gymName a:hover{
+color:red;
+}
+
 .stWrap {
 	margin-top: 30px;
 }
@@ -169,9 +179,9 @@ ${t.addr3} <br>
 몸무게 : ${t.weight} kg <br>
 자기소개 : ${t.info} <br>
 Email : ${t.email} <br>
-											<div class="gymName">
-												짐 : ${t.gymName} <br>
-											</div>
+<div class="gymName">
+짐 : ${t.gymName} <br>
+</div>
 									</div>
 
 								</div>
@@ -217,9 +227,9 @@ ${t.addr3} <br>
 몸무게 : ${t.weight} kg <br>
 자기소개 : ${t.info} <br>
 Email : ${t.email} <br>
-											<div class="gymName">
-												짐 : ${t.gymName}<br>
-											</div>
+					<div class="gymName">
+						짐 : ${t.gymName}<br>
+					</div>
 									</div>
 								</div>
 								<div class="con2">약력 : ${t.history}</div>
@@ -442,6 +452,7 @@ Email : ${t.email} <br>
 
 		function searchPlaces() {
 			var jb = document.querySelectorAll('.stWrap');
+			var jb2 = document.querySelectorAll('.col-md-6');
 
 			var keyword = document.getElementById('keyword').value;
 
@@ -449,6 +460,8 @@ Email : ${t.email} <br>
 
 				for (var i = 0; i < jb.length; i++) {
 					jb[i].style.display = 'none';
+					jb2[i].style.display = 'none';
+					
 				}
 
 			}
@@ -471,6 +484,7 @@ Email : ${t.email} <br>
 				var jb1 = document.querySelectorAll('.stWrap')[i];
 				if (jb1.innerText.indexOf(aaa) != -1) {
 					jb1.style.display = 'unset';
+					jb2[i].style.display = 'unset';
 				}
 			};
 
@@ -486,12 +500,8 @@ Email : ${t.email} <br>
 				// 검색 목록과 마커를 표출합니다
 				
 				
-				/* category select Error  */
-					/* console.dir(data[0].category_name.indexOf('헬스클럽')!=-1){} */
 				displayPlaces(data);
-				
-			
-					
+						
 				// 페이지 번호를 표출합니다
 				displayPagination(pagination);
 				
@@ -564,18 +574,41 @@ Email : ${t.email} <br>
 					    // 지도 중심을 이동 시킵니다
 					    map.setCenter(moveLatLon);
 					    
-					};
-
-					/* itemEl.onmouseout = function() {
-						infowindow.close();
-					}; */
-
+					};					
 				})(marker, places[i].place_name);
 
 				fragment.appendChild(itemEl);
-
+				
 			}
+			
+			var gym = document.querySelectorAll('.gymName');
+			for(var i =0 ; i<gym.length ; i ++){
 
+				gym[i].innerHTML ='<a href="#">'+gym[i].innerText+'</a>';
+				gym[i].style.cursor ='pointer';
+				gym[i].onclick = function () {
+					
+					for(var i =0; i<places.length ; i++){
+					var pl = places[i];				
+					var pn = places[i].place_name;						
+					
+					if(this.innerText.split(":")[1].trim()==pn){
+						
+					var moveLatLon = new daum.maps.LatLng(pl.y, pl.x);
+					var level = map.getLevel();
+					if(level>3){							
+						 map.setLevel(level =2);
+						}
+					 map.setCenter(moveLatLon);
+					}//if
+					
+				    	   
+				}//for
+				
+			}//function
+					}//for
+			
+			
 			// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
 			listEl.appendChild(fragment);
 			menuEl.scrollTop = 0;
@@ -589,9 +622,8 @@ Email : ${t.email} <br>
 		//현재 진행중인것ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ//
 		function getListItem(index, places) {
 
-			// console.dir(places);
 			
-			var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
+		var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
 					+ (index + 1)
 					+ '"></span>'
 					+ '<div class="info">'
@@ -620,14 +652,16 @@ Email : ${t.email} <br>
 
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 		function addMarker(position, idx, title) {
-			var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+			
+			imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 			imageSize = new daum.maps.Size(36, 37), // 마커 이미지의 크기
 			imgOptions = {
-				spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
-				spriteOrigin : new daum.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-				offset : new daum.maps.Point(13, 37)
-			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new daum.maps.MarkerImage(imageSrc, imageSize,
+					spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
+					spriteOrigin : new daum.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+					offset : new daum.maps.Point(13, 37)
+				// 마커 좌표에 일치시킬 이미지 내에서의 좌표
+			},
+			markerImage = new daum.maps.MarkerImage(imageSrc, imageSize,
 					imgOptions), marker = new daum.maps.Marker({
 				position : position, // 마커의 위치
 				image : markerImage
@@ -815,29 +849,31 @@ Email : ${t.email} <br>
 <script>
 			var iframe = document.querySelectorAll(".iframe");
 			var stNav = document.querySelectorAll("li.bbb a");
+			var stNav2 = document.querySelectorAll(".bbb");
 			var con4 = document.querySelectorAll(".ccc");
 	for(var i =0; i<stNav.length ; i++){
 		
 		if(con4[i].innerText.indexOf("공개영상")==-1){
 		   con4[i].style.display="none";
 		   stNav[i].style['border-radius']="0 10px 0 0";
-		}
+		};
 			if(iframe[i].src.length!=30){
 				con4[i].style.display="unset";
 				con4[i].innerHTML='<a href="#">공개영상</a>';
 				stNav[i].style['border-radius']="0 0 0 0";
-			}
-/* gkgk */
-			if(con4[i].innerText.indexOf("공개영상")!=-1){
-				console.dir(con4[i].innerText.indexOf("공개영상")!=-1);
-				con4[i].onclick = 
-				iframe[i].src += '?autoplay=1';					
 			};
-				
-				 
-				
-			}
-		
+/* gkgk */
+		/* 	if(con4[i].innerText.indexOf("공개영상")!=-1){
+				console.dir(con4[i].innerText.indexOf("공개영상")!=-1);
+				con4[i].onclick = function eee(i){ 
+					iframe[i].src += '?autoplay=1';		
+				};
+			}; 
+ 
+			};
+ */
+ 	}
+ 
 	</script>
 
 </body>
