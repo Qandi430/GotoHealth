@@ -13,8 +13,7 @@
 ### Tools
      Eclipse
      VSCode
-     Sqldveloper
-     Balsamiq Mockups 3
+     Sqldeveloper
  
 ### api
      카카오 지도
@@ -28,6 +27,8 @@
 
 ### Version management
      SourceTree
- 
+
+### 시연 영상
+<iframe width="640" height="360" src="https://youtu.be/q8QAV_BIlhM" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 
 
