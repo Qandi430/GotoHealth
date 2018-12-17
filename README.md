@@ -1,7 +1,7 @@
 # GotoHealth
 ### 비트캠프 1차 미니프로젝트
-     조원 : 박한준, 이승재, 이원재, 조성일
-     개요 : 국내에 활성화 되지 않은 헬스 커뮤니티 사이트를 servlet & jsp  제작 
+     구성원 : 박한준, 이승재, 이원재, 조성일
+     개요 : 국내에 활성화 되지 않은 헬스 커뮤니티 사이트를 servlet & jsp 기반으로 제작 
 
 ### 시연 영상 (※ 클릭 시 유튜브 동영상으로 연결됩니다.)
 [![Watch the video](https://img.youtube.com/vi/q8QAV_BIlhM/maxresdefault.jpg)](https://youtu.be/q8QAV_BIlhM)
