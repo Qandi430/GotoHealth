@@ -29,6 +29,4 @@
      SourceTree
 
 ### 시연 영상
-<iframe width="640" height="360" src="https://youtu.be/q8QAV_BIlhM" frameborder="0" gesture="media" allowfullscreen=""></iframe>
-
-
+[![Watch the video](https://img.youtube.com/vi/q8QAV_BIlhM/maxresdefault.jpg)](https://youtu.be/q8QAV_BIlhM)
